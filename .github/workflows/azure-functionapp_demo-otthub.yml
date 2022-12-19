@@ -42,5 +42,5 @@ jobs:
         with:
           app-name: 'demo-otthub'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8478AECC1C3B4E71BB465A6B2E017E76 }}
