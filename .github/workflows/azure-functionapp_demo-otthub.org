@@ -44,11 +44,3 @@ jobs:
           slot-name: 'Production'
           package:  ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8478AECC1C3B4E71BB465A6B2E017E76 }}
-
-      - name: 'check output'
-        shell: bash
-        run: |
-          pwd
-          ls -l
-          find ./ -type --name "*.zip"
-
