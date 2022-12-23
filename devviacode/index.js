@@ -4,7 +4,7 @@ module.exports = async function (context, req) {
     const name = (req.query.name || (req.body && req.body.name));
     const responseMessage = name
         ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This function devnew code-3";
+        : "This function devnew code-4";
 
     context.res = {
         // status: 200, /* Defaults to 200 */
