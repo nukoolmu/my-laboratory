@@ -1,0 +1,17 @@
+report(){
+    clear
+    echo "${HOST_INPUT} (${IPADDR_INPUT}) : Run As Profile : $PROFILE   "
+    echo ' ------------------------------------------------------------------------------'
+    echo '!!Restricted - disclose with authorization!!'
+    echo "Date :                    $(date +'%d-%m-%Y')"
+    echo "Time :                    $(date +'%H:%M')"
+    echo "Computer Name :           ${HOST_INPUT}"
+    echo "IP Adress :               ${IPADDR_INPUT}"
+    echo "Operating System Name:    $(uname -a)"
+    echo "System Name :             ${HOST_INPUT}"
+    echo "Node Name :               ${HOST_INPUT}"
+    echo 'Audit by :                NUKOOL_MUANGSOON'
+    echo 'Location :                JM (3BB)'
+    echo ''
+    echo 'Result            ID        NAME'
+}

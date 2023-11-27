@@ -1,1 +1,1 @@
-# my-laboratory
+# SCRIPT_HA for oracle linux

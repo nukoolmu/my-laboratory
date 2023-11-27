@@ -1,0 +1,25 @@
+menuDisplay(){
+    clear
+    
+echo '        888    888        d8888             d8888               888 d8b 888    '
+echo '        888    888       d88888            d88888               888 Y8P 888    '
+echo '        888    888      d88P888           d88P888               888     888    '
+echo '        8888888888     d88P 888          d88P 888 888  888  .d88888 888 888888 '
+echo '        888    888    d88P  888         d88P  888 888  888 d88" 888 888 888    '
+echo '        888    888   d88P   888        d88P   888 888  888 888  888 888 888    '
+echo '        888    888  d8888888888       d8888888888 Y88b 888 Y88b 888 888 Y88b.  '
+echo '        888    888 d88P     888      d88P     888  "Y88888  "Y88888 888  "Y888 '                                                                     
+                                                                       
+echo ' ------------------------------------------------------------------------------'
+
+    ls ${SCRIPT_HOME}/etc |cat -n
+echo ''
+read -p 'Select your Profile : ' PROFILE_INDEX
+
+PROFILE=$(ls ${SCRIPT_HOME}/etc |cat -n|sed -n "${PROFILE_INDEX}p"|awk '{print $2}')
+
+HOST_INPUT=$(hostname)
+IPADDR_INPUT=$(ifconfig|grep inet)
+
+report
+}
