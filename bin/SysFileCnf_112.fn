@@ -2,9 +2,15 @@ SysFileCnf_112(){
     RESULT=$(grep "[[:space:]]/tmp[[:space:]]" /etc/fstab | grep nodev)
 
     if [ -z "${RESULT}" ];then
-        result "FAIL" "1.1.2" "Set Nodev Option for /tmp Partiton"
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The option nodev is not set for /tmp partition'
     else
-        result "PASS" "1.1.2" "Set Nodev Option for /tmp Partiton"
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The option nodev was set for /tmp partition'
     fi
+
+    result "$AUDIT_RESULT" "1.1.2" "Set Nodev Option for /tmp Partiton"
+    writeFile "$AUDIT_RESULT" "1.1.2" "Set Nodev Option for /tmp Partiton" '=' " Partition /tmp shall be set nodev option" "$CUR_RESULT"
+
 
 }

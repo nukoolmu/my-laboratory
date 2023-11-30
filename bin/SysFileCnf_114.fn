@@ -2,9 +2,15 @@ SysFileCnf_114(){
     RESULT=$(grep "[[:space:]]/tmp[[:space:]]" /etc/fstab | grep noexec)
 
     if [ -z "${RESULT}" ];then
-        result "FAIL" "1.1.4" "Set noexec option for /tmp Partition"
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The option noexec is not set for /tmp partition'
     else
-        result "PASS" "1.1.4" "Set noexec option for /tmp Partition"
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The option noexec was set for /tmp partition'
     fi
+
+    result "$AUDIT_RESULT" "1.1.4" "Set noexec option for /tmp Partition"
+    writeFile "$AUDIT_RESULT" "1.1.4" "Set noexec option for /tmp Partition" '=' " Partition /tmp shall be set noexec option" "$CUR_RESULT"
+
 
 }

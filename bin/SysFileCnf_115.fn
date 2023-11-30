@@ -2,9 +2,14 @@ SysFileCnf_115(){
     RESULT=$(grep "[[:space:]]/var[[:space:]]" /etc/fstab)
 
     if [ -z "${RESULT}" ];then
-        result "FAIL" "1.1.5" "Create Separate Partition for /var"
+        AUDIT_RESULT='MANUAL'
+        CUR_RESULT=' The partition already separated for /var/log'
     else
-        result "PASS" "1.1.5" "Create Separate Partition for /var"
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' The partition already separated for /var/log'
     fi
+
+    result "$AUDIT_RESULT" "1.1.5" "Create Separate Partition for /var"
+    writeFile "$AUDIT_RESULT" "1.1.5" "Create Separate Partition for /var" '=' "Partition /var/log shall be create separately" "$CUR_RESULT"
 
 }

@@ -2,9 +2,14 @@ SysFileCnf_116(){
     RESULT=$(grep -e "^/tmp[[:space:]]" /etc/fstab | grep /var/tmp)
 
     if [ -z "${RESULT}" ];then
-        result "FAIL" "1.1.6" "Bind Mount the /var/tmp directory to tmp"
+        AUDIT_RESULT='FAILE'
+        CUR_RESULT=' The partition did not separate for /var/tmp'
     else
-        result "PASS" "1.1.6" "Bind Mount the /var/tmp directory to tmp"
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' The partition already separated for /var/tmp'
     fi
+
+    result "$AUDIT_RESULT" "1.1.6" "Bind Mount the /var/tmp directory to tmp"
+    writeFile "$AUDIT_RESULT" "1.1.6" "Bind Mount the /var/tmp directory to tmp" '=' "Partition /var/tmp shall be create separately" "$CUR_RESULT"
 
 }
