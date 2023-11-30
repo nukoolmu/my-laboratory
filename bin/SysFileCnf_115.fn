@@ -1,0 +1,10 @@
+SysFileCnf_115(){
+    RESULT=$(grep "[[:space:]]/var[[:space:]]" /etc/fstab)
+
+    if [ -z "${RESULT}" ];then
+        result "FAIL" "1.1.5" "Create Separate Partition for /var"
+    else
+        result "PASS" "1.1.5" "Create Separate Partition for /var"
+    fi
+
+}

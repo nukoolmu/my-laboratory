@@ -1,0 +1,10 @@
+SysFileCnf_117(){
+    RESULT=$(grep "[[:space:]]/var/log[[:space:]]" /etc/fstab)
+
+    if [ -z "${RESULT}" ];then
+        result "FAIL" "1.1.7" "Create Separate Partition for /var/log"
+    else
+        result "PASS" "1.1.7" "Create Separate Partition for /var/log"
+    fi
+
+}

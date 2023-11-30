@@ -1,0 +1,10 @@
+SysFileCnf_113(){
+    RESULT=$(grep "[[:space:]]/tmp[[:space:]]" /etc/fstab | grep nosuid)
+
+    if [ -z "${RESULT}" ];then
+        result "FAIL" "1.1.3" "Set nosuid option for /tmp Partition"
+    else
+        result "PASS" "1.1.3" "Set nosuid option for /tmp Partition"
+    fi
+
+}

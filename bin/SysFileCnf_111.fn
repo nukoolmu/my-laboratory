@@ -2,9 +2,9 @@ SysFileCnf_111(){
     RESULT=$(grep "[[:space:]]/tmp[[:space:]]" /etc/fstab)
 
     if [ -z "${RESULT}" ];then
-        result "FAIL" "1.1.1" " Create Separate Partition for /tmp"
+        result "FAIL" "1.1.1" "Create Separate Partition for /var/log"
     else
-        result "PASS" "1.1.1" " Create Separate Partition for /tmp"
+        result "PASS" "1.1.1" "Create Separate Partition for /var/log"
     fi
 
 }
