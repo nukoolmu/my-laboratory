@@ -5,7 +5,7 @@ SysFileCnf_111(){
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The /tmp partition does not exist in /etc/fstab'
     else
-        AUDIT)RESULT='PASS'
+        AUDIT_RESULT='PASS'
         CUR_RESULT='The /tmp partition  exist in /etc/fstab'
     fi
 
