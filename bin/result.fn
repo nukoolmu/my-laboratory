@@ -1,9 +1,9 @@
 result(){
-    
+
     echo "$1              $2        $3"
 }
 
-Excel_file(){
-
-    
+writeFile(){
+        # result,id,name,opreation, Expect Value, current Value
+   echo "$1,$2,$3,$4,$5,$6" >>${OUT_PUTFILE}
 }

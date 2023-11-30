@@ -7,11 +7,30 @@ report(){
     echo "Time :                    $(date +'%H:%M')"
     echo "Computer Name :           ${HOST_INPUT}"
     echo "IP Adress :               ${IPADDR_INPUT}"
-    echo "Operating System Name:    $(uname -a)"
+    echo "Operating System Name:    $(cat /etc/redhat-release)"
     echo "System Name :             ${HOST_INPUT}"
     echo "Node Name :               ${HOST_INPUT}"
     echo 'Audit by :                NUKOOL_MUANGSOON'
     echo 'Location :                JM (3BB)'
     echo ''
-    echo 'Result            ID        NAME'
+    echo 'Result            ID          NAME'
+
+
+        # wirte out to file without tee cmd
+
+    echo "${HOST_INPUT} (${IPADDR_INPUT}) : Run As Profile : $PROFILE   " > ${OUT_PUTFILE}
+    echo ' ------------------------------------------------------------------------------' >> ${OUT_PUTFILE}
+    echo '!!Restricted - disclose with authorization!!'  >> ${OUT_PUTFILE}
+    echo "Date :                    $(date +'%d-%m-%Y')"  >> ${OUT_PUTFILE}
+    echo "Time :                    $(date +'%H:%M')"  >> ${OUT_PUTFILE}
+    echo "Computer Name :           ${HOST_INPUT}"  >> ${OUT_PUTFILE}
+    echo "IP Adress :               ${IPADDR_INPUT}"  >> ${OUT_PUTFILE}
+    echo "Operating System Name:    $(cat /etc/redhat-release)"  >> ${OUT_PUTFILE}
+    echo "System Name :             ${HOST_INPUT}"  >> ${OUT_PUTFILE}
+    echo "Node Name :               ${HOST_INPUT}"  >> ${OUT_PUTFILE}
+    echo 'Audit by :                NUKOOL_MUANGSOON'  >> ${OUT_PUTFILE}
+    echo 'Location :                JM (3BB)'  >> ${OUT_PUTFILE}
+    echo ''  >> ${OUT_PUTFILE}
+    echo 'Result,ID,NAME,Operation,Expect Value,Current Value'  >> ${OUT_PUTFILE}
+
 }

@@ -2,9 +2,14 @@ SysFileCnf_111(){
     RESULT=$(grep "[[:space:]]/tmp[[:space:]]" /etc/fstab)
 
     if [ -z "${RESULT}" ];then
-        result "FAIL" "1.1.1" "Create Separate Partition for /var/log"
+        AUDIT_RESULT=FAIL
+        CUR_RESULT='The /tmp partition does not exist in /etc/fstab'
     else
-        result "PASS" "1.1.1" "Create Separate Partition for /var/log"
+        AUDIT)RESULT=PASS
+        CUR_RESULT='The /tmp partition  exist in /etc/fstab'
     fi
+
+    result "$AUDIT_RESULT" "1.1.1" "Create Separate Partition for /var/log"
+    writeFile "$AUDIT_RESULT" "1.1.1" "Create Separate Partition for /var/log" '=' "Partition /tmp shall be create separately" "$CUR_RESULT"
 
 }
