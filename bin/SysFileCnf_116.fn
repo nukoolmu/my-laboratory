@@ -2,7 +2,7 @@ SysFileCnf_116(){
     RESULT=$(grep -e "^/tmp[[:space:]]" /etc/fstab | grep /var/tmp)
 
     if [ -z "${RESULT}" ];then
-        AUDIT_RESULT='FAILE'
+        AUDIT_RESULT='FAIL'
         CUR_RESULT=' The partition did not separate for /var/tmp'
     else
         AUDIT_RESULT='PASS'
