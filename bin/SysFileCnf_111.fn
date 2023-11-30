@@ -2,10 +2,10 @@ SysFileCnf_111(){
     RESULT=$(grep "[[:space:]]/tmp[[:space:]]" /etc/fstab)
 
     if [ -z "${RESULT}" ];then
-        AUDIT_RESULT=FAIL
+        AUDIT_RESULT='FAIL'
         CUR_RESULT='The /tmp partition does not exist in /etc/fstab'
     else
-        AUDIT)RESULT=PASS
+        AUDIT)RESULT='PASS'
         CUR_RESULT='The /tmp partition  exist in /etc/fstab'
     fi
 
