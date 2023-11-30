@@ -10,6 +10,6 @@ SysFileCnf_111(){
     fi
 
     result "$AUDIT_RESULT" "1.1.1" "Create Separate Partition for /var/log"
-    writeFile "$AUDIT_RESULT" "1.1.1" "Create Separate Partition for /var/log" '=' "Partition /tmp shall be create separately" "$CUR_RESULT"
+#    writeFile "$AUDIT_RESULT" "1.1.1" "Create Separate Partition for /var/log" '=' "Partition /tmp shall be create separately" "$CUR_RESULT"
 
 }
