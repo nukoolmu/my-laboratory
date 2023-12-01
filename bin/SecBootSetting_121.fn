@@ -17,8 +17,8 @@ SecBootSetting_121(){
             CUR_RESULT='Owner on bootloader config does not config'
     fi
 
-    result "$AUDIT_RESULT" "1.2.1" 'Set User/Group Owner on /boot/grub2/grub.cfg OR /boot/efi/EFI/redhat/grub.cfg'
-    writeFile "$AUDIT_RESULT" "1.2.1" 'Set User/Group Owner on /boot/grub2/grub.cfg OR /boot/efi/EFI/redhat/grub.cfg' '=' 'Set User/Group Owner root:root' "$CUR_RESULT"
+    #result "$AUDIT_RESULT" "1.2.1" 'Set User/Group Owner on /boot/grub2/grub.cfg OR /boot/efi/EFI/redhat/grub.cfg'
+    #writeFile "$AUDIT_RESULT" "1.2.1" 'Set User/Group Owner on /boot/grub2/grub.cfg OR /boot/efi/EFI/redhat/grub.cfg' '=' 'Set User/Group Owner root:root' "$CUR_RESULT"
 
 
 }
