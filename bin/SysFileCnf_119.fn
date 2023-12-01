@@ -10,8 +10,8 @@ SysFileCnf_119(){
         CUR_RESULT='The partition already separated for /var/log/audit'
     fi
 
-    result "$AUDIT_RESULT" "1.1.8" " Create Separate Partition for /var/log/audit"
-    writeFile "$AUDIT_RESULT" "1.1.8" " Create Separate Partition for /var/log/audit" '=' "Partition /var/log/audit shall be create separately" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "1.1.9" " Create Separate Partition for /var/log/audit"
+    writeFile "$AUDIT_RESULT" "1.1.9" " Create Separate Partition for /var/log/audit" '=' "Partition /var/log/audit shall be create separately" "$CUR_RESULT"
 
 
 }
