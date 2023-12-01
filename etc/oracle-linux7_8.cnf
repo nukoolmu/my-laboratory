@@ -7,6 +7,6 @@ SysFileCnf_115;
 SysFileCnf_116;
 SysFileCnf_117;
 SysFileCnf_118;
-SecBootSetting_121 2>/dev/null;
+SecBootSetting_121;
 SecBootSetting_122;
 AdditionalProc_131;
