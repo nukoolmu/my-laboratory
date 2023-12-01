@@ -1,16 +1,16 @@
-SpService_32(){
+SpService_31(){
 
-    RESULT_1=$(ls -l /etc/systemd/system/default.target 2>/dev/null| grep graphical.target)
-    RESULT_2=$(rpm -q xorg-x11-server-common |grep -v  "is not installed")
-    if [ ! -z "${RESULT_1}" ] && [ ! -z "${RESULT_2}" ] ;then
+    RESULT=$(grep umask /etc/sysconfig/init)
+
+    if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='package and service are enabled'
+        CUR_RESULT='Umask does not set'
     else
         AUDIT_RESULT='PASS'
-        CUR_RESULT='package and service are disabled'
+        CUR_RESULT='Umask has already set'
     fi
 
-    result "$AUDIT_RESULT" "3.2" "Remove the X Window System"
-    writeFile "$AUDIT_RESULT" "3.2" "Remove the X Window System" '=' "disabled xorg-x11" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "3.1" "Set Daemon umask"
+    writeFile "$AUDIT_RESULT" "3.1" "Set Daemon umask" '=' "Umask shall be set in /etc/sysconfig/init" "$CUR_RESULT"
 
 }
