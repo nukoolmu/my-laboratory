@@ -1,0 +1,16 @@
+OSService_212(){
+
+    RESULT=$(chkconfig --list | grep chargen-dgram)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Service was currently enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The Service is disabled'
+    fi
+
+    result "$AUDIT_RESULT" "2.12" " Disable chargen-dgram"
+    writeFile "$AUDIT_RESULT" "2.12" " Disable chargen-dgram" '=' "The Service shall be disabled" "$CUR_RESULT"
+
+}

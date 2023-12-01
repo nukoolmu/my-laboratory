@@ -1,4 +1,4 @@
-OSService_211(){
+OSService_21(){
 
     RESULT=$(rpm -q telnet-server |grep 'is not installed')
 
@@ -10,8 +10,7 @@ OSService_211(){
         CUR_RESULT='The package does not installed'
     fi
 
-    result "$AUDIT_RESULT" "2.1.1" "Remove Telnet-server"
-    writeFile "$AUDIT_RESULT" "2.1.1" "Remove Telnet-server" '=' "Package telnet-server shall be remove" "$CUR_RESULT"
-
+    result "$AUDIT_RESULT" "2.1" "Remove Telnet-server"
+    writeFile "$AUDIT_RESULT" "2.1" "Remove Telnet-server" '=' "Package telnet-server shall be remove" "$CUR_RESULT"
 
 }
