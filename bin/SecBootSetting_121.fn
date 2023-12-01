@@ -1,0 +1,16 @@
+SecBootSetting_121(){
+    RESULT=$(stat -L -c "%U:%G" /boot/grub2/grub.cfg 2>/dev/null | egrep "root";stat -L -c "%U:%G" /boot/efi/EFI/redhat/grub.cfg 2>/dev/null | egrep "root")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Owner on bootloader config does not config'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Owner on bootloader config is config'
+    fi
+
+    result "$AUDIT_RESULT" "1.2.1" "Set User/Group Owner on /boot/grub2/grub.cfg OR /boot/efi/EFI/redhat/grub.cfg"
+    writeFile "$AUDIT_RESULT" "1.2.1" "Set User/Group Owner on /boot/grub2/grub.cfg OR /boot/efi/EFI/redhat/grub.cfg" '=' "Set User/Group Owner root:root" "$CUR_RESULT"
+
+
+}

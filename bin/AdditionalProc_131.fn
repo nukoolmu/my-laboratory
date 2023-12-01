@@ -1,0 +1,18 @@
+AdditionalProc_131(){
+
+    RESULT_1=$(grep "hard core" /etc/security/limits.conf |grep 0)
+    RESULT_2=$(sysctl fs.suid_dumpable |grep 0)
+
+    if [ -z "${RESULT_1}" ] && [ -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The core dumps are not restricted'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' The core dumps are restricted'
+    fi
+
+    result "$AUDIT_RESULT" "1.3.1" "Restrict Core Dumps"
+    writeFile "$AUDIT_RESULT" "1.3.1" "Restrict Core Dumps" '=' "Run the following command to set the active kernel parameter:# sysctl -w fs.suid_dumpable=0" "$CUR_RESULT"
+
+
+}
