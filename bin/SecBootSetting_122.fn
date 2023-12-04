@@ -1,12 +1,18 @@
 SecBootSetting_122(){
-    RESULT=$(stat -L -c "%a" /boot/grub2/grub.cfg | egrep ".00" ; stat -L -c "%a" /boot/efi/EFI/redhat/grub.cfg | egrep ".00")
+    if [ -f /boot/grub2/grub.cfg ] && [ -f /boot/efi/EFI/redhat/grub.cfg ];then
+        RESULT=$(stat -L -c "%a" /boot/grub2/grub.cfg | egrep ".00" ; stat -L -c "%a" /boot/efi/EFI/redhat/grub.cfg | egrep ".00")
 
-    if [ -z "${RESULT}" ];then
+        if [ -z "${RESULT}" ];then
+            AUDIT_RESULT='FAIL'
+            CUR_RESULT=' Permissions on bootloader config does not config'
+        else
+            AUDIT_RESULT='PASS'
+            CUR_RESULT=' Permissions on bootloader config is  configured'
+        fi
+
+    else
         AUDIT_RESULT='FAIL'
         CUR_RESULT=' Permissions on bootloader config does not config'
-    else
-        AUDIT_RESULT='PASS'
-        CUR_RESULT=' Permissions on bootloader config is  configured'
     fi
 
     result "$AUDIT_RESULT" "1.2.2" "Set Permissions on boot loader configuration"

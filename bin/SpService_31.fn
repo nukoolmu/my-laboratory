@@ -1,0 +1,16 @@
+SpService_31(){
+
+    RESULT=$(grep umask /etc/sysconfig/init)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Umask does not set'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Umask has already set'
+    fi
+
+    result "$AUDIT_RESULT" "3.1" "Set Daemon umask"
+    writeFile "$AUDIT_RESULT" "3.1" "Set Daemon umask" '=' "Umask shall be set in /etc/sysconfig/init" "$CUR_RESULT"
+
+}
