@@ -8,8 +8,7 @@ LogAudit_514(){
             echo "FAIL" >>${TMP_PATH}/LogAudit_514.tmp
         else   
             echo "PASS" >>${TMP_PATH}/LogAudit_514.tmp
-        if
-
+        fi
     done
 
     RESULT=$(grep FAIL ${TMP_PATH}/LogAudit_514.tmp)
