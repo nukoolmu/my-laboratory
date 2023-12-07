@@ -1,0 +1,16 @@
+SysFileCnf_1119(){
+    RESULT_1=$(/sbin/modprobe -n -v hfsplus)
+    RESULT_2=$(/sbin/lsmod | grep hfsplus)
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='MANUAL'
+        CUR_RESULT='The filesystem hfsplus is not disabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The filesystem hfsplus is not disabled'
+    fi
+
+    result "$AUDIT_RESULT" "1.1.19" "Disable Mounting of hfsplus Filesystems"
+    writeFile "$AUDIT_RESULT" "1.1.19" "Disable Mounting of hfsplus Filesystems" '=' "The mounting hfsplus filesystem shall be disabled" "$CUR_RESULT"
+
+
+}

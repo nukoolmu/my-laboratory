@@ -1,0 +1,16 @@
+OSService_215(){
+
+    RESULT=$(systemctl is-enabled daytime-stream |grep disabled)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Service was currently enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The Service is disabled'
+    fi
+
+    result "$AUDIT_RESULT" "2.15" "Disable daytime-stream"
+    writeFile "$AUDIT_RESULT" "2.15" "Disable daytime-stream" '=' "The Service shall be disabled" "$CUR_RESULT"
+
+}

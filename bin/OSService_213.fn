@@ -1,6 +1,6 @@
 OSService_213(){
 
-    RESULT=$(systemctl is-enabled chargen-stream|grep disabled)
+    RESULT=$(systemctl is-enabled chargen-stream |grep disabled)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
@@ -10,7 +10,7 @@ OSService_213(){
         CUR_RESULT='The Service is disabled'
     fi
 
-    result "$AUDIT_RESULT" "2.12" " Disable chargen-stream"
-    writeFile "$AUDIT_RESULT" "2.12" " Disable chargen-stream" '=' "The Service shall be disabled" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "2.13" " Disable chargen-stream"
+    writeFile "$AUDIT_RESULT" "2.13" " Disable chargen-stream" '=' "The Service shall be disabled" "$CUR_RESULT"
 
 }

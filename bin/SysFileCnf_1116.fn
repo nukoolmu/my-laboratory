@@ -1,0 +1,16 @@
+SysFileCnf_1116(){
+    RESULT_1=$(/sbin/modprobe -n -v freevxfs)
+    RESULT_2=$(/sbin/lsmod | grep freevxfs)
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='MANUAL'
+        CUR_RESULT='The filesystem freevxfs is not disabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The filesystem freevxfs is not disabled'
+    fi
+
+    result "$AUDIT_RESULT" "1.1.16" "Disable Mounting of freevxfs Filesystems"
+    writeFile "$AUDIT_RESULT" "1.1.16" "Disable Mounting of freevxfs Filesystems" '=' "The mounting freevxfs filesystem shall be disabled" "$CUR_RESULT"
+
+
+}

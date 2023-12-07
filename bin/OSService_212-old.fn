@@ -1,4 +1,4 @@
-OSService_212(){
+OSService_212-old(){
 
     RESULT=$(chkconfig --list | grep chargen-dgram)
 

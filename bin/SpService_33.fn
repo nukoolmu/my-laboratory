@@ -1,0 +1,16 @@
+SpService_33(){
+
+    RESULT=$(systemctl is-enabled |grep avahi-daemon)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Service was currently enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The Service is disabled'
+    fi
+
+    result "$AUDIT_RESULT" "3.3" "Disable Avahi Server"
+    writeFile "$AUDIT_RESULT" "3.3" "Disable Avahi Server" '=' "The Service shall be disabled" "$CUR_RESULT"
+
+}

@@ -9,7 +9,7 @@ SpService_32(){
         AUDIT_RESULT='PASS'
         CUR_RESULT='package and service are disabled'
     fi
-
+                                                                                                                                                                            
     result "$AUDIT_RESULT" "3.2" "Remove the X Window System"
     writeFile "$AUDIT_RESULT" "3.2" "Remove the X Window System" '=' "disabled xorg-x11" "$CUR_RESULT"
 
