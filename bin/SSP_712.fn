@@ -1,0 +1,15 @@
+SSP_712(){
+    RESULT=$(grep PASS_MIN_DAYS /etc/login.defs | grep 7)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The minimum days between password changes is not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The minimum days between password changes is configured'
+    fi
+
+    result "$AUDIT_RESULT" "7.1.2" "Set Password Change Minimum Number of Days"
+    writeFile "$AUDIT_RESULT" "7.1.2" "Set Password Change Minimum Number of Days" '=' "Set Password Change Minimum Number of Days" "$CUR_RESULT"
+
+}

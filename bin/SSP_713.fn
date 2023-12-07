@@ -1,0 +1,15 @@
+SSP_713(){
+    RESULT=$(grep PASS_WARN_AGE /etc/login.defs | grep 7)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The password expiration warning days is already 7 or more'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The password expiration warning days is already 7 or more'
+    fi
+
+    result "$AUDIT_RESULT" "7.1.3" "Set Password Expiring Warning Days"
+    writeFile "$AUDIT_RESULT" "7.1.3" "Set Password Expiring Warning Days" '=' "Set Password Expiring Warning Days" "$CUR_RESULT"
+
+}
