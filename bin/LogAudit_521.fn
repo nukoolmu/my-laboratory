@@ -1,0 +1,15 @@
+LogAudit_521(){
+
+    RESULT=$(systemctl is-enabled auditd )
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Service does not Enable'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The Service is already Enable'
+    fi
+
+    result "$AUDIT_RESULT" "5.2.1" "Enable auditd Service"
+    writeFile "$AUDIT_RESULT" "5.2.1" "Enable auditd Service" '=' "Enable auditd Service" "$CUR_RESULT"
+}

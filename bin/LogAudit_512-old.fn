@@ -1,6 +1,6 @@
 LogAudit_512-old(){
 
-    RESULT=$(chkconfig --list rsyslog )
+    RESULT=$(chkconfig --list rsyslog 2>/dev/null )
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'

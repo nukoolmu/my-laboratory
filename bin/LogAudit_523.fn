@@ -1,0 +1,15 @@
+LogAudit_523(){
+
+    RESULT=$(grep time-change /etc/audit/audit.rules )
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' Ensure login and logout events are wrong'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Ensure login and logout events are collected'
+    fi
+
+    result "$AUDIT_RESULT" "5.2.3" "Record Events That Modify Date and Time Information"
+    writeFile "$AUDIT_RESULT" "5.2.3" "Record Events That Modify Date and Time Information" '=' "Enable auditd Service" "$CUR_RESULT"
+}

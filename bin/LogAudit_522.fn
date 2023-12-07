@@ -1,0 +1,16 @@
+LogAudit_522(){
+
+    RESULT_1=$(grep "linux" /boot/grub2/grub.cfg 2>/dev/null)
+    RESULT_2=$(grep "linux" /boot/efi/EFI/redhat/grub.cfg 2>/dev/null)
+
+    if [ -z "${RESULT_2}" ] || [ -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Service does not Enable'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The Service is already Enable'
+    fi
+
+    result "$AUDIT_RESULT" "5.2.2" "Enable Auditing for Process That Start Prior to auditd"
+    writeFile "$AUDIT_RESULT" "5.2.2" "Enable Auditing for Process That Start Prior to auditd" '=' "Enable Auditing for Process That Start Prior to auditd" "$CUR_RESULT"
+}
