@@ -1,0 +1,16 @@
+MNP_423(){
+
+    RESULT_1=$(/sbin/sysctl net.ipv4.conf.all.secure_redirects|grep 0)
+    RESULT_2=$(/sbin/sysctl net.ipv4.conf.default.secure_redirects|grep 0)
+
+    if [ -z "${RESULT_1}" ] && [ -z "${RESULT_2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The IPv4 all accept secure redirects route is enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The IPv4 all accept secure redirects route is already disabled'
+    fi
+
+    result "$AUDIT_RESULT" "4.2.3" "Disable Secure ICMP Redirect Acceptance"
+    writeFile "$AUDIT_RESULT" "4.2.3" "Disable Secure ICMP Redirect Acceptance" '=' "Disable Secure ICMP Redirect Acceptance" "$CUR_RESULT"
+}

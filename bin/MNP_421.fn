@@ -1,0 +1,16 @@
+MNP_421(){
+
+    RESULT_1=$(/sbin/sysctl net.ipv4.conf.all.send_redirects|grep 0)
+    RESULT_2=$(/sbin/sysctl net.ipv4.conf.default.send_redirects|grep 0)
+
+    if [ -z "${RESULT_1}" ] && [ -z "${RESULT_2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The IPv4 all accept source route is enable'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The IPv4 all accept source route is already disabled'
+    fi
+
+    result "$AUDIT_RESULT" "4.2.1" "Disable Source Route Packet Acceptance"
+    writeFile "$AUDIT_RESULT" "4.2.1" "Disable Source Route Packet Acceptance" '=' "Disable Source Route Packet Acceptance" "$CUR_RESULT"
+}

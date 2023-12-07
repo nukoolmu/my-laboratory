@@ -1,0 +1,16 @@
+MNP_426(){
+
+    RESULT=$(/sbin/sysctl net.ipv4.icmp_ignore_bogus_error_responses  |grep 1)
+
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The bogus ICMP responses are not ignored'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The bogus ICMP responses are already ignored'
+    fi
+
+    result "$AUDIT_RESULT" "4.2.6" " Enable Bad Error Message Protection"
+    writeFile "$AUDIT_RESULT" "4.2.6" " Enable Bad Error Message Protection" '=' "Enable Bad Error Message Protection" "$CUR_RESULT"
+}

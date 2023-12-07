@@ -1,0 +1,16 @@
+MNP_424(){
+
+    RESULT_1=$(/sbin/sysctl net.ipv4.conf.all.log_martians|grep 1)
+    RESULT_2=$(/sbin/sysctl net.ipv4.conf.default.log_martians|grep 1)
+
+    if [ -z "${RESULT_1}" ] && [ -z "${RESULT_2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The IPv4 all log martains does not logged'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The IPv4 all log martains is already logged'
+    fi
+
+    result "$AUDIT_RESULT" "4.2.4" "Log Suspicious Packets"
+    writeFile "$AUDIT_RESULT" "4.2.4" "Log Suspicious Packets" '=' "Log Suspicious Packets" "$CUR_RESULT"
+}

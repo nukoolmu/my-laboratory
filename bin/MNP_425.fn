@@ -1,0 +1,16 @@
+MNP_425(){
+
+    RESULT=$(/sbin/sysctl net.ipv4.icmp_echo_ignore_broadcasts |grep 1)
+
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The IPv4 broadcast ICMP requests are not ignored'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The IPv4 broadcast ICMP requests are already ignored'
+    fi
+
+    result "$AUDIT_RESULT" "4.2.5" "Enable Ignore Broadcast Requests"
+    writeFile "$AUDIT_RESULT" "4.2.5" "Enable Ignore Broadcast Requests" '=' "Enable Ignore Broadcast Requests" "$CUR_RESULT"
+}
