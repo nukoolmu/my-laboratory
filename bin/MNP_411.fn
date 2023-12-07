@@ -1,0 +1,15 @@
+MNP_411(){
+
+    RESULT=$(/sbin/sysctl net.ipv4.ip_forward |grep 0)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The IP forwarding is enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The IP forwarding is already disabled'
+    fi
+
+    result "$AUDIT_RESULT" "4.1.1" "Disable IP Forwarding"
+    writeFile "$AUDIT_RESULT" "4.1.1" "Disable IP Forwarding" '=' "Disable IP Forwarding" "$CUR_RESULT"
+}

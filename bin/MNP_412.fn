@@ -1,0 +1,16 @@
+MNP_412(){
+
+    RESULT_1=$(/sbin/sysctl net.ipv4.conf.all.send_redirects|grep 0)
+    RESULT_2=$(/sbin/sysctl net.ipv4.conf.default.send_redirects|grep 0)
+
+    if [ -z "${RESULT_1}" ] && [ -z "${RESULT_2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The send_redirects are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The send_redirects all already configured'
+    fi
+
+    result "$AUDIT_RESULT" "4.1.2" "Disable Send Packet Redirects"
+    writeFile "$AUDIT_RESULT" "4.1.2" "Disable Send Packet Redirects" '=' "Disable Send Packet Redirectsg" "$CUR_RESULT"
+}
