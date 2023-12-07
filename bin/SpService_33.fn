@@ -11,6 +11,6 @@ SpService_33(){
     fi
 
     result "$AUDIT_RESULT" "3.3" "Disable Avahi Server"
-    writeFile "$AUDIT_RESULT" "3.3" "Disable Avahi Server" '=' "The Service shall be disabled" "$CUR_RESULT"
+    writeFile "$AUDIT_RESULT" "3.3" "Disable Avahi Server" '=' "The Avahi Server is not installed" "$CUR_RESULT"
 
 }

@@ -16,7 +16,7 @@ SpService_36(){
         CUR_RESULT='The Service is disabled'
     fi
 
-    result "$AUDIT_RESULT" "3.6" "Disable Avahi Server"
-    writeFile "$AUDIT_RESULT" "3.6" "Disable Avahi Server" '=' "The Service shall be disabled" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "3.6" "Configure Network Time Protocol (NTP)"
+    writeFile "$AUDIT_RESULT" "3.6" "Configure Network Time Protocol (NTP)" '=' "The ntp is already configured" "$CUR_RESULT"
 
 }

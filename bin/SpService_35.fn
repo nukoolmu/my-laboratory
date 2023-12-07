@@ -10,7 +10,7 @@ SpService_35(){
         CUR_RESULT='The Service is disabled'
     fi
 
-    result "$AUDIT_RESULT" "3.5" "Disable Avahi Server"
-    writeFile "$AUDIT_RESULT" "3.5" "Disable Avahi Server" '=' "The Service shall be disabled" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "3.5" "Disable DHCP Server"
+    writeFile "$AUDIT_RESULT" "3.5" "Disable DHCP Server" '=' "The DHCP Server is not installed" "$CUR_RESULT"
 
 }

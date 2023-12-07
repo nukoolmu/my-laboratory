@@ -1,8 +1,8 @@
-SpService_37(){
+SpService_313(){
 
-    RESULT_1=$(rpm -q openldap-servers)
-    RESULT_2=$(rpm -q openldap-clients)
-    if [ ! -z "${RESULT_1}" ] && [ ! -z "${RESULT_2}" ] ;then
+    RESULT_1=$(rpm -q samba)
+
+    if [ ! -z "${RESULT_1}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='package and service are enabled'
     else
@@ -10,7 +10,7 @@ SpService_37(){
         CUR_RESULT='package and service are disabled'
     fi
                                                                                                                                                                             
-    result "$AUDIT_RESULT" "3.7" "Disabled LDAP"
-    writeFile "$AUDIT_RESULT" "3.7" "Disabled LDAP" '=' "The rsh client is not installed" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "3.13" "Remove Samba daemon"
+    writeFile "$AUDIT_RESULT" "3.13" "Remove Samba daemon" '=' "The Samba daemon is not installed" "$CUR_RESULT"
 
 }

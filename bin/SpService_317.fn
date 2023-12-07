@@ -1,0 +1,17 @@
+SpService_317(){
+    RESULT_1=$(yum list --installed | grep sshpass)
+    RESULT_2=$(rpm -q sshpass)
+
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='MANUAL'
+        CUR_RESULT='package and service are enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='package and service are disabled'
+    fi
+
+    result "$AUDIT_RESULT" "3.17" "Remove SSHPASSpackage"
+    writeFile "$AUDIT_RESULT" "3.17" "Remove SSHPASSpackage" '=' "The SSHPASSpackage is not installed" "$CUR_RESULT"
+
+
+}
