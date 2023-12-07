@@ -1,0 +1,15 @@
+LogAudit_512-old(){
+
+    RESULT=$(chkconfig --list rsyslog )
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The service was disable'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The service already enabled'
+    fi
+
+    result "$AUDIT_RESULT" "5.1.2" "Activate the rsyslog Service"
+    writeFile "$AUDIT_RESULT" "5.1.2" "Activate the rsyslog Service" '=' "Activate the rsyslog Service" "$CUR_RESULT"
+}

@@ -1,0 +1,29 @@
+LogAudit_514(){
+
+    AILL_FILE_LIST=$(cat /etc/rsyslog.conf |grep -v '#'|grep var|awk '{print $2}'|sed 's|-||g')
+    for ifile in ${AILL_FILE_LIST};do
+        PERMISSION_OF_FILE=$(stat ${ifile} | grep "Access.*.0600.*.Uid.*root.*.Gid.*.root")
+
+        if [ -z "${PERMISSION_OF_FILE}"  ];then
+            echo "FAIL" >>${TMP_PATH}/LogAudit_514.tmp
+        else   
+            echo "PASS" >>${TMP_PATH}/LogAudit_514.tmp
+        if
+
+    done
+
+    RESULT=$(grep FAIL ${TMP_PATH}/LogAudit_514.tmp)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Permission of file need maunaul Configure'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The Permission of file was collected'
+    fi
+
+    result "$AUDIT_RESULT" "5.1.4" "Create and Set Permission on rsyslog Log files"
+    writeFile "$AUDIT_RESULT" "5.1.4" "Create and Set Permission on rsyslog Log files" '=' "Permission must be 0600 and owner is root" "$CUR_RESULT"
+
+    rm -f ${TMP_PATH}/LogAudit_514.tmp
+}
