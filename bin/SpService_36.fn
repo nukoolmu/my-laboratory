@@ -1,8 +1,14 @@
 SpService_35(){
 
-    RESULT=$(systemctl is-enabled |grep dhcp is not installed)
+    RESULT_1=$(grep "restrict default" /etc/ntp.conf)
+    RESULT_2=$(grep "restrict -6 default" /etc/ntp.conf)
+    RESULT_3=$(grep "^server" /etc/ntp.conf)
+    RESULT_4=$(grep "ntp:ntp" /etc/sysconfig/ntpd)
+    RESULT_5=$(grep "^ *restrict -6 ::1" /etc/ntp.conf 2>/dev/null)
+    RESULT_6=$(grep "disable monitor" /etc/ntp.conf 2>/dev/null)
+    RESULT_7=$(grep "restrict 127.0.0.1" /etc/ntp.conf 2>/dev/null)
 
-    if [ -z "${RESULT}" ];then
+    if [ -z "${RESULT_1}" ] && [ ! -z "${RESULT_2}" ] && [ ! -z "${RESULT_3}" ] && [ ! -z "${RESULT_4}" ] && [ ! -z "${RESULT_5}" ] && [ ! -z "${RESULT_6}" ] && [ ! -z "${RESULT_7}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The Service was currently enabled'
     else

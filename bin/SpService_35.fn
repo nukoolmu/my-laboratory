@@ -1,6 +1,6 @@
 SpService_35(){
 
-    RESULT=$(systemctl is-enabled |grep dhcp is not installed)
+    RESULT=$(rpm -q dhcp package |grep dhcp is not installed)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
