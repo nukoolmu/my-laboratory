@@ -1,0 +1,15 @@
+LogAudit_527(){
+
+    RESULT=$(grep logins /etc/audit/audit.rules )
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' Ensure login and logout events are not collected'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Ensure login and logout events are collected'
+    fi
+
+    result "$AUDIT_RESULT" "5.2.7" " Collect Login and Logout Events"
+    writeFile "$AUDIT_RESULT" "5.2.7" " Collect Login and Logout Events" '=' "Collect Login and Logout Events" "$CUR_RESULT"
+}

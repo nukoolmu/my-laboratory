@@ -1,0 +1,15 @@
+LogAudit_526(){
+
+    RESULT=$( grep MAC-policy /etc/audit/audit.rules )
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' Ensure login and logout events are not collected'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Ensure login and logout events are collected'
+    fi
+
+    result "$AUDIT_RESULT" "5.2.6" "Record Events That Modify the System's Mandatory Access Controls"
+    writeFile "$AUDIT_RESULT" "5.2.6" "Record Events That Modify the System's Mandatory Access Controls" '=' "Record Events That Modify the System's Mandatory Access Controls" "$CUR_RESULT"
+}

@@ -4,7 +4,7 @@ LogAudit_523(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT=' Ensure login and logout events are wrong'
+        CUR_RESULT=' Ensure login and logout events are not collected'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='Ensure login and logout events are collected'
