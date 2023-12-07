@@ -1,0 +1,15 @@
+LogAudit_511(){
+
+    RESULT=$(rpm -q rsyslog)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The package does not install'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The package already installed'
+    fi
+
+    result "$AUDIT_RESULT" "5.1.1" "Install the rsyslog package"
+    writeFile "$AUDIT_RESULT" "5.1.1" "Install the rsyslog package" '=' "Install the rsyslog package" "$CUR_RESULT"
+}

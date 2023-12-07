@@ -2,7 +2,6 @@ MNP_428(){
 
     RESULT=$(/sbin/sysctl net.ipv4.tcp_syncookies |grep 1)
 
-
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The TCP SYN Cookies is already disable'
