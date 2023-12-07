@@ -2,12 +2,15 @@ LogAudit_514(){
 
     AILL_FILE_LIST=$(cat /etc/rsyslog.conf |grep -v '#'|grep var|awk '{print $2}'|sed 's|-||g')
     for ifile in ${AILL_FILE_LIST};do
-        PERMISSION_OF_FILE=$(stat ${ifile} | grep "Access.*.0600.*.Uid.*root.*.Gid.*.root")
 
-        if [ -z "${PERMISSION_OF_FILE}"  ];then
-            echo "FAIL" >>${TMP_PATH}/LogAudit_514.tmp
-        else   
-            echo "PASS" >>${TMP_PATH}/LogAudit_514.tmp
+        if [ -f ${ifile} ];then
+            PERMISSION_OF_FILE=$(stat ${ifile} | grep "Access.*.0600.*.Uid.*root.*.Gid.*.root")
+
+            if [ -z "${PERMISSION_OF_FILE}"  ];then
+                echo "FAIL" >>${TMP_PATH}/LogAudit_514.tmp
+            else   
+                echo "PASS" >>${TMP_PATH}/LogAudit_514.tmp
+            fi
         fi
     done
 
