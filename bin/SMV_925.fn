@@ -1,0 +1,16 @@
+SMV_925(){
+
+    RESULT=$(/bin/cat /etc/passwd | /bin/awk -F: '($3 == 0) { print $1 }' |grep root)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='No UID 0 account other than not root'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='No UID 0 account other than root'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.5" "Verify No UID 0 Accounts Exist Other Than root"
+    writeFile "$AUDIT_RESULT" "9.2.5" "Verify No UID 0 Accounts Exist Other Than root" '=' "The UID 0 account other than root shall be removed" "$CUR_RESULT"
+
+}

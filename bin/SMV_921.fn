@@ -1,0 +1,16 @@
+SMV_921(){
+
+    RESULT=$(/etc/shadow | /bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Found accounts that do have password'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Found accounts that do not have password'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.1" "Ensure Password Fields are Not Empty"
+    writeFile "$AUDIT_RESULT" "9.2.1" "Ensure Password Fields are Not Empty" '=' "All accounts must have passwords or be locked" "$CUR_RESULT"
+
+}

@@ -1,0 +1,16 @@
+SMV_911(){
+
+    RESULT=$(/bin/ls -l /etc/passwd |grep -- '-rw-r--r--')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Permissions on /etc/passwd are not correct'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Permissions on /etc/passwd are correct'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.1" "Verify Permissions on /etc/passwd"
+    writeFile "$AUDIT_RESULT" "9.1.1" "Verify Permissions on /etc/passwd" '=' "Permissions on /etc/passwd shall be set to -rw-r--r--" "$CUR_RESULT"
+
+}

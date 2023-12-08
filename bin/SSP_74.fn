@@ -1,4 +1,4 @@
-DSA_74(){
+SSP_74(){
 
     RESULT_1=$(grep "^umask 077" /etc/bashrc |grep umask 077)
     RESULT_2=$(grep "^umask 077" /etc/profile.d/* |grep umask 077)

@@ -1,0 +1,16 @@
+SMV_923(){
+
+    RESULT=$(/bin/grep '^+:' /etc/shadow)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='No legacy character '+' in /etc/shadow'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='No legacy character '+' in /etc/shadow'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.3" "Verify No Legacy '+' Entries Exist in /etc/shadow File"
+    writeFile "$AUDIT_RESULT" "9.2.3" "Verify No Legacy '+' Entries Exist in /etc/shadow File" '=' "The legacy character '+' entries shall be removed" "$CUR_RESULT"
+
+}

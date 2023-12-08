@@ -1,4 +1,5 @@
-DSA_73(){
+SSP_73(){
+    
     RESULT=$(grep "^root:" /etc/passwd | cut -f4 -d: |grep 0)
 
     if [ -z "${RESULT}" ];then

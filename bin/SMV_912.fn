@@ -1,0 +1,16 @@
+SMV_912(){
+
+    RESULT=$(/bin/ls -l /etc/shadow |grep -- '----------')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Permissions on /etc/shadow are not correct'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Permissions on /etc/shadow are correct'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.2" "Verify Permissions on /etc/shadow"
+    writeFile "$AUDIT_RESULT" "9.1.2" "Verify Permissions on /etc/shadow" '=' "Permissions on /etc/shadow shall be set to ----------" "$CUR_RESULT"
+
+}

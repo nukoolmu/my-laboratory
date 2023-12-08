@@ -1,0 +1,16 @@
+SMV_918(){
+
+    RESULT=$(/bin/ls -l /etc/group |grep -- '-rw-r--r--')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='User and group owner of /etc/group is not already set to root:root'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='User and group owner of /etc/group is already set to root:root'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.8" "Verify User/Group Ownership on /etc/group"
+    writeFile "$AUDIT_RESULT" "9.1.8" "Verify User/Group Ownership on /etc/group" '=' "User and group owner of /etc/group OR  shall be set to root:root" "$CUR_RESULT"
+
+}

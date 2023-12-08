@@ -1,0 +1,16 @@
+SMV_914(){
+
+    RESULT=$(/bin/ls -l /etc/group |grep -- '-rw-r--r--')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Permissions on /etc/group are not correct'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Permissions on /etc/group are correct'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.4" "Verify Permissions on /etc/group"
+    writeFile "$AUDIT_RESULT" "9.1.4" "Verify Permissions on /etc/group" '=' "Permissions on /etc/group shall be set to -rw-r--r--" "$CUR_RESULT"
+
+}

@@ -1,0 +1,16 @@
+SMV_9110(){
+
+    RESULT=$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser -ls)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Un-owned directory or file is not found'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Un-owned directory or file is found'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.10" "Find Un-owned Files and Directories"
+    writeFile "$AUDIT_RESULT" "9.1.10" "Find Un-owned Files and Directories" '=' "The un-owned directories and files shall be verified" "$CUR_RESULT"
+
+}

@@ -1,0 +1,17 @@
+SWBanner_8.2(){
+
+    RESULT_1=$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue)
+    RESULT_2=$(egrep '(\\v|\\r|\\m|\\s)' /etc/motd)
+    RESULT_3=$(egrep'(\\v|\\r|\\m|\\s)' /etc/issue.net)
+
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Already Remove OS Information from not Login Warning Banners'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Already Remove OS Information from Login Warning Banners'
+    fi
+
+    result "$AUDIT_RESULT" "8.2" "Remove OS Information from Login Warning Banners"
+    writeFile "$AUDIT_RESULT" "8.2" "Remove OS Information from Login Warning Banners" '=' "Remove OS Information from Login Warning Banners" "$CUR_RESULT"
+}

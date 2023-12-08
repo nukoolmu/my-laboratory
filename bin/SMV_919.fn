@@ -1,0 +1,16 @@
+SMV_919(){
+
+    RESULT=$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type f -perm -0002)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Verify world writeable files listed in ./result/[Restrict]Non_Conformance_Details_date "+%Y%m%d%H%M%S"/ID-9.1.10.txt'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Verify world writeable files listed not in ./result/[Restrict]Non_Conformance_Details_date "+%Y%m%d%H%M%S"/ID-9.1.10.txt'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.9" "Find World Writable Files"
+    writeFile "$AUDIT_RESULT" "9.1.9" "Find World Writable Files" '=' "The unauthorized world-writeable files shall be set permission" "$CUR_RESULT"
+
+}

@@ -1,0 +1,17 @@
+SWBanner_8.1(){
+
+    RESULT_1=$(/bin/ls -l /etc/motd |grep /etc/motd)
+    RESULT_2=$(ls /etc/issue |grep /etc/issue)
+    RESULT_3=$(ls /etc/issue.net |grep /etc/issue.net)
+
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The permissions on /etc/motd are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The permissions on /etc/motd are configured'
+    fi
+
+    result "$AUDIT_RESULT" "8.1" "Set Warning Banner for Standard Login Services"
+    writeFile "$AUDIT_RESULT" "8.1" "Set Warning Banner for Standard Login Services" '=' "Set Warning Banner for Standard Login Services" "$CUR_RESULT"
+}

@@ -1,0 +1,16 @@
+SMV_916(){
+
+    RESULT=$(/bin/ls -l /etc/shadow |grep -- '----------')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='User and group owner of /etc/shadow is not already set to root:root'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='User and group owner of /etc/shadow is already set to root:root'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.6" "Verify User/Group Ownership on /etc/shadow"
+    writeFile "$AUDIT_RESULT" "9.1.6" "Verify User/Group Ownership on /etc/shadow" '=' "User and group owner of /etc/shadow OR  shall be set to root:root" "$CUR_RESULT"
+
+}

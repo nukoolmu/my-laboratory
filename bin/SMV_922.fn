@@ -1,0 +1,16 @@
+SMV_922(){
+
+    RESULT=$(/bin/grep '^+:' /etc/passwd)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='No legacy character '+' in /etc/passwd'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='No legacy character '+' in /etc/passwd'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.2" "Verify No Legacy '+' Entries Exist in /etc/passwd File"
+    writeFile "$AUDIT_RESULT" "9.2.2" "Verify No Legacy '+' Entries Exist in /etc/passwd File" '=' "The legacy character '+' entries shall be removed" "$CUR_RESULT"
+
+}

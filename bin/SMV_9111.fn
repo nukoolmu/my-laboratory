@@ -1,0 +1,16 @@
+SMV_9111(){
+
+    RESULT=$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup -ls)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Un-grouped directory or file is found'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Un-grouped directory or file is not found'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.11" "Find Un-grouped Files and Directories"
+    writeFile "$AUDIT_RESULT" "9.1.11" "Find Un-grouped Files and Directories" '=' "The un-grouped directories and files shall be verified" "$CUR_RESULT"
+
+}

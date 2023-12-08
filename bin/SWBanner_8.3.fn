@@ -1,0 +1,15 @@
+SWBanner_8.3(){
+
+    RESULT_1=$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue)
+
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The GNOME warning banner is not set'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The GNOME warning banner is set'
+    fi
+
+    result "$AUDIT_RESULT" "8.3" "Set GNOME Warning Banner"
+    writeFile "$AUDIT_RESULT" "8.3" "Set GNOME Warning Banner" '=' "The GNOME warning banner shall be set" "$CUR_RESULT"
+}

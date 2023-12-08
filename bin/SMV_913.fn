@@ -1,0 +1,16 @@
+SMV_913(){
+
+    RESULT=$(/bin/ls -l /etc/gshadow |grep -- '----------')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Permissions on /etc/gshadow are not correct'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Permissions on /etc/gshadow are correct'
+    fi
+
+    result "$AUDIT_RESULT" "9.1.3" "Verify Permissions on /etc/gshadow"
+    writeFile "$AUDIT_RESULT" "9.1.3" "Verify Permissions on /etc/gshadow" '=' "Permissions on /etc/gshadow shall be set to ----------" "$CUR_RESULT"
+
+}
