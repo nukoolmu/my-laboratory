@@ -1,0 +1,15 @@
+DSA_73(){
+    RESULT=$(grep "^root:" /etc/passwd | cut -f4 -d: |grep 0)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The default group for the root account is not GID 0'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The default group for the root account is GID 0'
+    fi
+
+    result "$AUDIT_RESULT" "7.3" "Set Default Group for root Account"
+    writeFile "$AUDIT_RESULT" "7.3" "Set Default Group for root Account" '=' "Set Default Group for root Account" "$CUR_RESULT"
+
+}
