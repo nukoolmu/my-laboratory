@@ -11,6 +11,8 @@ SCRIPT_NAME=$(basename ${0})
 SCRIPT_HOME=$(echo "${SCRIPT_PATH}"|sed "s|/${SCRIPT_NAME}||g")
 PROCESS_ID="$$"
 
+TMP_PATH=${SCRIPT_HOME}/tmp
+
 # init script
 HOST_INPUT=$(hostname)
 IPADDR_INPUT=$(ifconfig |grep -A 1 eth|grep inet|awk -F':' '{print $2}'|awk '{print $1}')
