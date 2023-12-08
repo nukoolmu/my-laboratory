@@ -1,0 +1,16 @@
+DSA_74(){
+
+    RESULT_1=$(grep "^umask 077" /etc/bashrc |grep umask 077)
+    RESULT_2=$(grep "^umask 077" /etc/profile.d/* |grep umask 077)
+
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The default group for the root account is not GID 0'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The default group for the root account is GID 0'
+    fi
+
+    result "$AUDIT_RESULT" "7.4" "Set Default umask for Users"
+    writeFile "$AUDIT_RESULT" "7.4" "Set Default umask for Users" '=' "Set Default umask for Users" "$CUR_RESULT"
+}
