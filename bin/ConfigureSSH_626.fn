@@ -1,0 +1,14 @@
+ConfigureSSH_626(){
+    RESULT=$(grep "^IgnoreRhosts" /etc/ssh/sshd_config | grep yes)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter IgnoreRhosts isn't commented'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter IgnoreRhosts is commented'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.6" "Parameter IgnoreRhosts shall be set to yes in /etc/ssh/sshd_config"
+    writeFile "$AUDIT_RESULT" "6.2.6" "Parameter IgnoreRhosts shall be set to yes in /etc/ssh/sshd_config" '=' "Parameter IgnoreRhosts shall be set to yes in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

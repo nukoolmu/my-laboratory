@@ -1,0 +1,14 @@
+ConfigureSSH_624(){
+    RESULT=$(grep "^X11Forwarding" /etc/ssh/sshd_config | grep no)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='  Parameter X11Forwarding is set to incorrect value'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' Parameter X11Forwarding is set to correct value'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.4" " Parameter X11Forwarding shall be set to no in /etc/ssh/sshd_config"
+    writeFile "$AUDIT_RESULT" "6.2.4" " Parameter X11Forwarding shall be set to no in /etc/ssh/sshd_config" '=' "Parameter X11Forwarding shall be set to no in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

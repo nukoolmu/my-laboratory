@@ -1,0 +1,14 @@
+ConfigureSSH_627(){
+    RESULT=$(grep "^HostbasedAuthentication" /etc/ssh/sshd_config | grep no)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter PermitRootLogin isn't set properly in /etc/ssh/sshd_config'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter PermitRootLogin is set properly in /etc/ssh/sshd_config'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.7" "Parameter PermitRootLogin shall be set to no in /etc/ssh/sshd_config"
+    writeFile "$AUDIT_RESULT" "6.2.7" "Parameter PermitRootLogin shall be set to no in /etc/ssh/sshd_config" '=' "Parameter PermitRootLogin shall be set to no in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

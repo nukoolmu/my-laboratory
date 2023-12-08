@@ -1,0 +1,16 @@
+SystemAccess_618(){
+    RESULT1=$(ls -l /etc/cron.deny)
+    RESULT2=$(ls -l /etc/at.deny)
+    RESULT3=$(ls -l /etc/cron.allow)
+
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ] ;then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='  Restrict at/cron to Authorized Users are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='  Restrict at/cron to Authorized Users are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.8" " Restrict at/cron to Authorized Users"
+    writeFile "$AUDIT_RESULT" "6.1.8" "  Restrict at/cron to Authorized Users" '=' " Restrict at/cron to Authorized Users" "$CUR_RESULT"
+}

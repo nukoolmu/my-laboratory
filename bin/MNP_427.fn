@@ -1,7 +1,7 @@
 MNP_427(){
 
     RESULT_1=$(/sbin/sysctl net.ipv4.conf.all.rp_filter|grep 1)
-    RESULT_2=$(/sbin/sysctl net.ipv4.conf.all.rp_filter|grep 1)
+    RESULT_2=$(/sbin/sysctl net.ipv4.conf.default.rp_filter |grep 1)
 
     if [ -z "${RESULT_1}" ] && [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='FAIL'

@@ -1,0 +1,14 @@
+ConfigureSSH_629(){
+    RESULT=$(grep "^PermitEmptyPasswords" /etc/ssh/sshd_config | grep no)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter PermitEmptyPasswords is commented'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter PermitEmptyPasswords is set properly in /etc/ssh/sshd_config'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.9" "Parameter PermitEmptyPasswords shall be set to no in /etc/ssh/sshd_config"
+    writeFile "$AUDIT_RESULT" "6.2.9" "Parameter PermitEmptyPasswords shall be set to no in /etc/ssh/sshd_config" '=' "Parameter PermitEmptyPasswords shall be set to no in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

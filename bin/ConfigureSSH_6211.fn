@@ -1,0 +1,17 @@
+ConfigureSSH_6211(){
+    RESULT1=$(grep "Ciphers" /etc/ssh/sshd_config)
+    RESULT2=$(grep “MACs” /etc/ssh/sshd_config)
+    RESULT3=$(grep “KexAlgorithms” /etc/ssh/sshd_config)
+
+    if [ -z "${RESULT1}" ] && [ -z "${RESULT2}" ] && [ -z "${RESULT3}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter PermitUserEnvironment is commented'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter PermitUserEnvironment is set properly in /etc/ssh/sshd_config'
+    
+    fi
+
+    result "$AUDIT_RESULT" "6.2.11" "Use Only Approved Cipher in Counter Mode and Mac Algorithms and kex algorithms"
+    writeFile "$AUDIT_RESULT" "6.2.11" "Use Only Approved Cipher in Counter Mode and Mac Algorithms and kex algorithms" '=' "Parameter Ciphers shall be set to aes128-ctr/aes192-ctr/aes256-ctr in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

@@ -1,0 +1,14 @@
+SystemAccess_614(){
+    RESULT=$(stat -L -c "%a %u %g" /etc/cron.weekly | egrep ".00 0 0")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The permissions on /etc/cron.weekly are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='  The permissions on /etc/cron.weekly are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.4" " User/Group Owner and Permission on /etc/cron.daily"
+    writeFile "$AUDIT_RESULT" "6.1.4" " User/Group Owner and Permission on /etc/cron.daily" '=' " User/Group Owner and Permission on /etc/cron.daily" "$CUR_RESULT"
+}

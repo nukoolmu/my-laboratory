@@ -1,0 +1,14 @@
+ConfigureSSH_625(){
+    RESULT=$(grep "^MaxAuthTries" /etc/ssh/sshd_config | grep 5)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter MaxAuthTries isn't set to 5'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter MaxAuthTries is set to 5'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.5" "Parameter MaxAuthTries shall be set to 5 or less in /etc/ssh/sshd_config"
+    writeFile "$AUDIT_RESULT" "6.2.5" "Parameter MaxAuthTries shall be set to 5 or less in /etc/ssh/sshd_config" '=' "Parameter MaxAuthTries shall be set to 5 or less in /etc/ssh/sshd_config"
+}

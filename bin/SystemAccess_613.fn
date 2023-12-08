@@ -1,0 +1,14 @@
+SystemAccess_613(){
+    RESULT=$(stat -L -c "%a %u %g" /etc/cron.daily | egrep ".00 0 0")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The permissions on /etc/cron.daily are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' The permissions on /etc/cron.daily are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.3" " User/Group Owner and Permission on /etc/cron.daily"
+    writeFile "$AUDIT_RESULT" "6.1.3" " User/Group Owner and Permission on /etc/cron.daily" '=' " User/Group Owner and Permission on /etc/cron.daily" "$CUR_RESULT"
+}

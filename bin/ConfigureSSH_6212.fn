@@ -1,0 +1,16 @@
+ConfigureSSH_6212(){
+    RESULT1=$(grep "^ClientAliveInterval" /etc/ssh/sshd_config | grep 300)
+    RESULT2=$(grep "^ClientAliveCountMax" /etc/ssh/sshd_config | grep 0)
+
+    if [ -z "${RESULT1}" ] && [ -z "${RESULT2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter ClientAliveInterval is commented'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter ClientAliveInterval is set properly in /etc/ssh/sshd_config'
+    
+    fi
+
+    result "$AUDIT_RESULT" "6.2.12" "Set Idle Timeout Interval for User Login"
+    writeFile "$AUDIT_RESULT" "6.2.12" "Set Idle Timeout Interval for User Login" '=' "Parameter ClientAliveInterval shall be set to 300 in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

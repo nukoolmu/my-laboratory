@@ -1,0 +1,15 @@
+ConfigureSSH_632(){
+    RESULT=$(grep pam_pwquality.so /etc/pam.d/system-auth)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The pam_pwquality module isn't used'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The pam_pwquality module is already used'
+    
+    fi
+
+    result "$AUDIT_RESULT" "6.3.2" " Set Password Creation Requirement Parameters Using pam_pwquality"
+    writeFile "$AUDIT_RESULT" "6.3.2" " Set Password Creation Requirement Parameters Using pam_pwquality" '=' "The pam_pwquality module shall be used to check of the strength of password" "$CUR_RESULT"
+}

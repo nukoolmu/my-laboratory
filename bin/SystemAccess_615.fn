@@ -1,0 +1,14 @@
+SystemAccess_615(){
+    RESULT=$(stat -L -c "%a %u %g" /etc/cron.monthly | egrep ".00 0 0")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='  The permissions on /etc/cron.monthly are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='  The permissions on /etc/cron.monthly are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.5" "Set User/Group Owner and Permission on /etc/cron.monthly"
+    writeFile "$AUDIT_RESULT" "6.1.5" " Set User/Group Owner and Permission on /etc/cron.monthly" '=' " Set User/Group Owner and Permission on /etc/cron.monthly" "$CUR_RESULT"
+}

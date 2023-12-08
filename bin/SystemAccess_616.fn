@@ -1,0 +1,14 @@
+SystemAccess_616(){
+    RESULT=$(stat -L -c "%a %u %g" /etc/cron.d | egrep ".00 0 0")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The permissions on /etc/cron.d are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' The permissions on /etc/cron.d are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.6" " Set User/Group Owner and Permission on /etc/cron.d"
+    writeFile "$AUDIT_RESULT" "6.1.6" "  Set User/Group Owner and Permission on /etc/cron.d" '=' "  Set User/Group Owner and Permission on /etc/cron.d" "$CUR_RESULT"
+}

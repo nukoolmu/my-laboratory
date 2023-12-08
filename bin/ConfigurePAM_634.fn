@@ -1,0 +1,15 @@
+ConfigureSSH_634(){
+    RESULT=$( grep "remember" /etc/pam.d/system-auth | grep remember=5)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter remember isn't configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter remember is already configured'
+    
+    fi
+
+    result "$AUDIT_RESULT" "6.3.4" "Limit Password Reuse"
+    writeFile "$AUDIT_RESULT" "6.3.4" "Limit Password Reuse" '=' "Parameter remember shall be configured in /etc/pam.d/system-auth" "$CUR_RESULT"
+}

@@ -1,0 +1,14 @@
+ConfigureSSH_6210(){
+    RESULT=$(grep PermitUserEnvironment /etc/ssh/sshd_config | grep no)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter PermitUserEnvironment is commented'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter PermitUserEnvironment is set properly in /etc/ssh/sshd_config'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.10" "Parameter PermitUserEnvironment shall be set to no in /etc/ssh/sshd_config"
+    writeFile "$AUDIT_RESULT" "6.2.10" "Parameter PermitUserEnvironment shall be set to no in /etc/ssh/sshd_config" '=' "Parameter PermitUserEnvironment shall be set to no in /etc/ssh/sshd_config" "$CUR_RESULT"
+}

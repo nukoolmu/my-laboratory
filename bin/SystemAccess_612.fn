@@ -1,0 +1,14 @@
+SystemAccess_612(){
+    RESULT=$(stat -L -c "%a %u %g" /etc/crontab | egrep ".00 0 0")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The permissions on /etc/crontab are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The permissions on /etc/crontab are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.2" "Set User/Group Owner and Permission on /etc/crontab"
+    writeFile "$AUDIT_RESULT" "6.1.2" "Set User/Group Owner and Permission on /etc/crontab" '=' "Set User/Group Owner and Permission on /etc/crontab" "$CUR_RESULT"
+}

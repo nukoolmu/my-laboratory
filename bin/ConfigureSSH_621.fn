@@ -1,0 +1,14 @@
+ConfigureSSH_621(){
+    RESULT=$(grep "^Protocol" /etc/ssh/sshd_config | grep 2)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The pam_pwquality module is not used'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='  The pam_pwquality module is used'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.1" " Set Password Creation Requirement Parameters"
+    writeFile "$AUDIT_RESULT" "6.2.1" " Set Password Creation Requirement Parameters" '=' " Set Password Creation Requirement Parameters" "$CUR_RESULT"
+}

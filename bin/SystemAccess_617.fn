@@ -1,0 +1,14 @@
+SystemAccess_617(){
+    RESULT=$(stat -L -c "%a %u %g" /etc/at.allow | egrep ".00 0 0")
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' The permissions at/cron to Authorized Users are not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT=' The permissions at/cron to Authorized Users are configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.7" " Restrict at/cron to Authorized Users"
+    writeFile "$AUDIT_RESULT" "6.1.7" "  Restrict at/cron to Authorized Users" '=' " Restrict at/cron to Authorized Users" "$CUR_RESULT"
+}

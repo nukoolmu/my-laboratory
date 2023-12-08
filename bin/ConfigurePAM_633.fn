@@ -1,0 +1,16 @@
+ConfigureSSH_633(){
+    RESULT1=$(grep "pam_faillock" /etc/pam.d/password-auth  | grep deny=5 unlock_time=900)
+    RESULT2=$(grep "pam_unix.so" /etc/pam.d/password-auth | grep success=1)
+
+    if [ -z "${RESULT1}" ] && [ -z "${RESULT2}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Parameter pam_faillock is not configured properly'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Parameter pam_faillock is configured properly'
+    
+    fi
+
+    result "$AUDIT_RESULT" "6.3.3" "Set Lockout for Failed Password Attempts"
+    writeFile "$AUDIT_RESULT" "6.3.3" "Set Lockout for Failed Password Attempts" '=' "Parameter pam_faillock shall be configured in /etc/pam.d/password-auth" "$CUR_RESULT"
+}

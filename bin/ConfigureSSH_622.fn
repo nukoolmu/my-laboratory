@@ -1,0 +1,14 @@
+ConfigureSSH_622(){
+    RESULT=$(grep "^LogLevel" /etc/ssh/sshd_config | grep INFO)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='  The lockout for failed password attempts is not configured'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='  The lockout for failed password attempts is configured'
+    fi
+
+    result "$AUDIT_RESULT" "6.2.2" "Set Lockout for Failed Password Attempts"
+    writeFile "$AUDIT_RESULT" "6.2.2" "Set Lockout for Failed Password Attempts" '=' "Set Lockout for Failed Password Attempts" "$CUR_RESULT"
+}

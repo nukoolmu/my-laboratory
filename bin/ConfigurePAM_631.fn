@@ -1,0 +1,15 @@
+ConfigureSSH_631(){
+    RESULT=$(authconfig --test | grep hashing | grep sha512)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Password-hashing algorithm isn't set to SHA-512'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Password-hashing algorithm is already set to SHA-512'
+    
+    fi
+
+    result "$AUDIT_RESULT" "6.3.1" "Upgrade Password Hashing Algorithm to SHA-512"
+    writeFile "$AUDIT_RESULT" "6.3.1" "Upgrade Password Hashing Algorithm to SHA-512" '=' "Password-hashing algorithm shall be set to SHA-512" "$CUR_RESULT"
+}
