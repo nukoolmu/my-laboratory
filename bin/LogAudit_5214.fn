@@ -1,0 +1,15 @@
+LogAudit_5214(){
+
+    RESULT=$(grep actions /etc/audit/audit.rules)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT=' Ensure login and logout events are not collected'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Ensure login and logout events are collected'
+    fi
+
+    result "$AUDIT_RESULT" "5.2.14" "Collect System Administrator Actions"
+    writeFile "$AUDIT_RESULT" "5.2.14" "Collect System Administrator Actions" '=' "Collect System Administrator Actions" "$CUR_RESULT"
+}
