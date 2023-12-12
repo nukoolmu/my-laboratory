@@ -1,0 +1,37 @@
+SMV_927(){
+
+    sub_function(){
+        for dir in `/bin/cat /etc/passwd | /bin/egrep -v '(root|halt|sync|shutdown)' |/bin/awk -F: '($8 == "PS" && $7 != "/sbin/nologin") { print $6 }'`; do
+            dirperm=`/bin/ls -ld $dir | /bin/cut -f1 -d" "` 
+            if [ `echo $dirperm | /bin/cut -c6 ` != "-" ]; then 
+                echo "Group Write permission set on directory $dir" 
+            fi 
+            if [ `echo $dirperm | /bin/cut -c8 ` != "-" ]; then 
+                echo "Other Read permission set on directory $dir" 
+            fi 
+            if [ `echo $dirperm | /bin/cut -c9 ` != "-" ]; then 
+                echo "Other Write permission set on directory $dir" 
+            fi 
+            if [ `echo $dirperm | /bin/cut -c10 ` != "-" ]; then 
+                echo "Other Execute permission set on directory $dir"
+            fi 
+        done
+    }
+
+    sub_function > ${TMP_PATH}/SMV_927.tmp
+
+    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_927.tmp)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='User Home Directories Permissions is incorrect'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='User Home Directories Permissions is correctly'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.7" "Check Permission on User Home Directories"
+    writeFile "$AUDIT_RESULT" "9.2.7" "Check Permission on User Home Directories" '=' "Check Permission on User Home Directories" "$CUR_RESULT"
+
+    rm -f ${TMP_PATH}/SMV_927.tmp
+}
