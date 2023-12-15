@@ -1,5 +1,5 @@
 ConfigurePAM_633(){
-    RESULT1=$(grep "pam_faillock" /etc/pam.d/password-auth  | grep deny=5 unlock_time=900)
+    RESULT1=$(grep "pam_faillock" /etc/pam.d/password-auth  | grep unlock_time=900)
     RESULT2=$(grep "pam_unix.so" /etc/pam.d/password-auth | grep success=1)
 
     if [ -z "${RESULT1}" ] && [ -z "${RESULT2}" ];then

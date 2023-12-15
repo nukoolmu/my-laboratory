@@ -3,7 +3,7 @@ ConfigurePAM_634(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='Parameter remember isn't configured'
+        CUR_RESULT='Parameter remember is not configured'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='Parameter remember is already configured'

@@ -1,7 +1,7 @@
 SSP_74(){
 
-    RESULT_1=$(grep "^umask 077" /etc/bashrc |grep umask 077)
-    RESULT_2=$(grep "^umask 077" /etc/profile.d/* |grep umask 077)
+    RESULT_1=$(grep "^umask 077" /etc/bashrc |grep 077)
+    RESULT_2=$(grep "^umask 077" /etc/profile.d/* |grep 077)
 
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ];then
         AUDIT_RESULT='FAIL'

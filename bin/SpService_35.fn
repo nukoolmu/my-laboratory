@@ -1,6 +1,6 @@
 SpService_35(){
 
-    RESULT=$(rpm -q dhcp package |grep dhcp is not installed)
+    RESULT=$(rpm -q dhcp package |grep dhcp)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
