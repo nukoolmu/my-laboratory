@@ -1,8 +1,7 @@
 SMV_9216(){
 
     sub_function(){
-        /bin/cat /etc/passwd |\ 
-        /bin/awk -F: '($3 < 1000) { print $1" "$3 }' |\
+        /bin/cat /etc/passwd |\ /bin/awk -F: '($3 < 1000) { print $1" "$3 }' |\
             while read user uid; do
                 found=0
                 for tUser in ${defUsers} do

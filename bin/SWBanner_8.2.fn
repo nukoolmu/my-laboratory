@@ -2,7 +2,7 @@ SWBanner_8.2(){
 
     RESULT_1=$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue)
     RESULT_2=$(egrep '(\\v|\\r|\\m|\\s)' /etc/motd)
-    RESULT_3=$(egrep'(\\v|\\r|\\m|\\s)' /etc/issue.net)
+    RESULT_3=$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue.net)
 
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ];then
         AUDIT_RESULT='FAIL'
