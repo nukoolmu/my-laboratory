@@ -3,7 +3,7 @@ ConfigureSSH_628(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='Parameter PermitRootLogin isn't set properly in /etc/ssh/sshd_config'
+        CUR_RESULT='Parameter PermitRootLogin is not set properly in /etc/ssh/sshd_config'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='Parameter PermitRootLogin is set properly in /etc/ssh/sshd_config'

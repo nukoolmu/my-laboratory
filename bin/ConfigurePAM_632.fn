@@ -3,7 +3,7 @@ ConfigurePAM_632(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='The pam_pwquality module isn't used'
+        CUR_RESULT='The pam_pwquality module is not used'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='The pam_pwquality module is already used'

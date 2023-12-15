@@ -3,7 +3,7 @@ ConfigureSSH_625(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='Parameter MaxAuthTries isn't set to 5'
+        CUR_RESULT='Parameter MaxAuthTries is not set to 5'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='Parameter MaxAuthTries is set to 5'

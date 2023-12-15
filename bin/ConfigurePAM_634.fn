@@ -1,5 +1,5 @@
 ConfigurePAM_634(){
-    RESULT=$( grep "remember" /etc/pam.d/system-auth | grep remember=5)
+    RESULT=$(grep "remember" /etc/pam.d/system-auth | grep remember=5)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'

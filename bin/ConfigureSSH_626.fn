@@ -3,7 +3,7 @@ ConfigureSSH_626(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='Parameter IgnoreRhosts isn't commented'
+        CUR_RESULT='Parameter IgnoreRhosts is not commented'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='Parameter IgnoreRhosts is commented'
