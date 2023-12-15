@@ -1,0 +1,27 @@
+SMV_9218(){
+
+    sub_function(){
+        for dir in `/bin/cat /etc/passwd |\ /bin/awk -F: '{ print $6 }'`; do
+            if [ ! -h "$dir/.netrc" -a -f "$dir/.netrc" ]; then 
+                echo ".netrc file $dir/.netrc exists" 
+            fi
+        done
+    }
+
+    sub_function > ${TMP_PATH}/SMV_9218.tmp
+
+    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_9218.tmp)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='.netrc file is found'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='.netrc file is not found'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.18" "Check for Presence of User .netrc Files"
+    writeFile "$AUDIT_RESULT" "9.2.18" "Check for Presence of User .netrc Files" '=' ".netrc file shall be verified" "$CUR_RESULT"
+
+    rm -f ${TMP_PATH}/SMV_9218.tmp
+}

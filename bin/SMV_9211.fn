@@ -1,0 +1,28 @@
+SMV_9211(){
+
+    sub_function(){
+        for i in $(cut -s -d: -f4 /etc/passwd | sort -u ); do 
+                grep -q -P "^.*?:x:$i:" /etc/group 
+                if [ $? -ne 0 ]; then 
+                    echo "Group $i is referenced by /etc/passwd but does not exist in /etc/group" 
+                fi 
+        done 
+    }
+
+    sub_function > ${TMP_PATH}/SMV_9211.tmp
+
+    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_9211.tmp)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Groups are managed is not properly'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Groups are managed properly'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.11" "Check Groups in /etc/passwd"
+    writeFile "$AUDIT_RESULT" "9.2.11" "Check Groups in /etc/passwd" '=' "Group definition shall be verified" "$CUR_RESULT"
+
+    rm -f ${TMP_PATH}/SMV_9211.tmp
+}

@@ -1,0 +1,31 @@
+SMV_9217(){
+
+    sub_function(){
+        cat /etc/passwd | cut -f1 -d":" | /bin/sort -n | /usr/bin/uniq -c |\
+            while read x ; do
+                [ -z "${x}" ] && break
+                set - $x
+                    if [ $1 -gt 1 ]; then 
+                        uids=`/bin/gawk -F: '($1 == n) { print $3 }' n=$2 \ 
+                        /etc/passwd | xargs` echo "Duplicate User Name ($2): ${uids}"
+                    fi
+            done
+    }
+
+    sub_function > ${TMP_PATH}/SMV_9217.tmp
+
+    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_9217.tmp)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Duplicate group name is found'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Duplicate group name is not found'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.17" "Check for Duplicate Group Names"
+    writeFile "$AUDIT_RESULT" "9.2.17" "Check for Duplicate Group Names" '=' "Duplicate group names shall be verified" "$CUR_RESULT"
+
+    rm -f ${TMP_PATH}/SMV_9217.tmp
+}

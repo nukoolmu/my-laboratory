@@ -1,0 +1,47 @@
+SMV_929(){
+
+    sub_function(){
+        for dir in `/bin/cat /etc/passwd | /bin/egrep -v '(root|sync|halt|shutdown)' |\/bin/awk -F: '($7 != "/sbin/nologin") { print $6 }'`; do 
+            for file in $dir/.netrc; do 
+                if [ ! -h "$file" -a -f "$file" ]; then 
+                    fileperm=`/bin/ls -ld $file | /bin/cut -f1 -d" "` 
+                    if [ `echo $fileperm | /bin/cut -c5 ` != "-" ] then 
+                        echo "Group Read set on $file" 
+                    fi 
+                    if [ `echo $fileperm | /bin/cut -c6 ` != "-" ] then 
+                        echo "Group Write set on $file" 
+                    fi  
+                    if [ `echo $fileperm | /bin/cut -c7 ` != "-" ] then 
+                        echo "Group Execute set on $file" 
+                    fi 
+                    if [ `echo $fileperm | /bin/cut -c8 ` != "-" ] then 
+                        echo "Other Read set on $file" 
+                    fi 
+                    if [ `echo $fileperm | /bin/cut -c9 ` != "-" ] then 
+                        echo "Other Write set on $file" 
+                    fi 
+                    if [ `echo $fileperm | /bin/cut -c10 ` != "-" ] then 
+                        echo "Other Execute set on $file"
+                    fi 
+                fi 
+            done 
+        done
+    }
+
+    sub_function > ${TMP_PATH}/SMV_929.tmp
+
+    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_929.tmp)
+
+    if [ ! -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='Permissions on user .netrc file are set incorrect'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Permissions on user .netrc file are set correctly'
+    fi
+
+    result "$AUDIT_RESULT" "9.2.9" "Check Permissions on User .netrc Files"
+    writeFile "$AUDIT_RESULT" "9.2.9" "Check Permissions on User .netrc Files" '=' "Permission on user .netrc file shall be verified" "$CUR_RESULT"
+
+    rm -f ${TMP_PATH}/SMV_929.tmp
+}

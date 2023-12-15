@@ -18,7 +18,7 @@ SMV_928(){
 
     sub_function > ${TMP_PATH}/SMV_928.tmp
 
-    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_927.tmp)
+    RESULT=$(grep 'permission' ${TMP_PATH}/SMV_928.tmp)
 
     if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
