@@ -1,4 +1,4 @@
-ConfigureSSH_631(){
+ConfigurePAM_631(){
     RESULT=$(authconfig --test | grep hashing | grep sha512)
 
     if [ -z "${RESULT}" ];then

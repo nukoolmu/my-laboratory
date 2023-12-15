@@ -1,4 +1,4 @@
-ConfigureSSH_632(){
+ConfigurePAM_632(){
     RESULT=$(grep pam_pwquality.so /etc/pam.d/system-auth)
 
     if [ -z "${RESULT}" ];then
