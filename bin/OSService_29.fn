@@ -1,4 +1,4 @@
-OSService_28(){
+OSService_29(){
 
     RESULT=$(rpm -q talk |grep 'is not installed')
 
@@ -10,7 +10,7 @@ OSService_28(){
         CUR_RESULT='The package does not installed'
     fi
 
-    result "$AUDIT_RESULT" "2.8" "Remove talk"
-    writeFile "$AUDIT_RESULT" "2.8" "Remove talk" '=' "Package talk shall be remove" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "2.9" "Remove talk"
+    writeFile "$AUDIT_RESULT" "2.9" "Remove talk" '=' "Package talk shall be remove" "$CUR_RESULT"
 
 }
