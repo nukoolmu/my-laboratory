@@ -5,32 +5,26 @@ SMV_929(){
             for file in $dir/.netrc; do 
                 if [ ! -h "$file" -a -f "$file" ]; then 
                     fileperm=`/bin/ls -ld $file | /bin/cut -f1 -d" "` 
-                   
-                    if [ `echo $fileperm | /bin/cut -c5 ` != "-" ] then 
+                    if [ `echo $fileperm | /bin/cut -c5 ` != "-" ]; then 
                         echo "Group Read set on $file" 
                     fi 
-                   
-                    if [ `echo $fileperm | /bin/cut -c6 ` != "-" ] then 
+                    if [ `echo $fileperm | /bin/cut -c6 ` != "-" ]; then 
                         echo "Group Write set on $file" 
                     fi  
-                
-                    if [ `echo $fileperm | /bin/cut -c7 ` != "-" ] then 
+                    if [ `echo $fileperm | /bin/cut -c7 ` != "-" ]; then 
                         echo "Group Execute set on $file" 
                     fi 
-    
-                    if [ `echo $fileperm | /bin/cut -c8 ` != "-" ] then 
+                    if [ `echo $fileperm | /bin/cut -c8 ` != "-" ]; then 
                         echo "Other Read set on $file" 
                     fi 
- 
-                    if [ `echo $fileperm | /bin/cut -c9 ` != "-" ] then 
+                    if [ `echo $fileperm | /bin/cut -c9 ` != "-" ]; then 
                         echo "Other Write set on $file" 
                     fi 
-
-                    if [ `echo $fileperm | /bin/cut -c10 ` != "-" ] then 
+                    if [ `echo $fileperm | /bin/cut -c10 ` != "-" ]; then 
                         echo "Other Execute set on $file"
                     fi 
                 fi 
-            done 
+            done
         done
     }
 
@@ -40,7 +34,7 @@ SMV_929(){
 
     if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
-        CUR_RESULT='Permissions on user .netrc file are set incorrect'
+        CUR_RESULT='Permissions on user .netrc file are not set incorrect'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='Permissions on user .netrc file are set correctly'
