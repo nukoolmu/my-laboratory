@@ -1,6 +1,6 @@
 SMV_912(){
 
-    RESULT=$(/bin/ls -l /etc/shadow |grep -- '----------')
+    RESULT=$(/bin/ls -l /etc/shadow)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'

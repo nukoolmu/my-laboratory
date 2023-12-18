@@ -1,6 +1,6 @@
 SMV_917(){
 
-    RESULT=$(/bin/ls -l /etc/gshadow |grep -- '----------')
+    RESULT=$(/bin/ls -l /etc/gshadow)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'

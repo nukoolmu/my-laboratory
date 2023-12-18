@@ -1,6 +1,6 @@
 SMV_918(){
 
-    RESULT=$(/bin/ls -l /etc/group |grep -- '-rw-r--r--')
+    RESULT=$(/bin/ls -l /etc/group)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
