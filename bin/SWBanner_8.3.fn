@@ -1,9 +1,9 @@
 SWBanner_8.3(){
 
-    RESULT_1=$(egrep '(\\v|\\r|\\m|\\s)' /etc/issue)
+    RESULT_1=$(cat /etc.d/dconf/db/gdm.d/01-banner-message |grep GNOME)
 
-    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ];then
-        AUDIT_RESULT='FAIL'
+    if [ -z "${RESULT_1}" ];then
+        AUDIT_RESULT='MANUAL'
         CUR_RESULT='The GNOME warning banner is not set'
     else
         AUDIT_RESULT='PASS'
