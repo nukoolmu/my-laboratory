@@ -4,17 +4,17 @@ SMV_928(){
         for dir in $(cat /etc/passwd | egrep -v '(root|sync|halt|shutdown)' | awk -F: '($7 != "/sbin/nologin") { print $6 }'); do
             for file in $dir/.[A-Za-z0-9]*; do
                 if [ ! -h "$file" -a -f "$file" ]; then
-                    fileperm=$(ls -ld "$file" | cut -f1 -d" ")
-                    if [ "${fileperm:5:1}" != "-" ]; then
+                    fileperm=`/bin/ls -ld $file | /bin/cut -f1 -d" "`
+                    
+                    if [ `echo $fileperm | /bin/cut -c6 ` != "-" ]; then
                         echo "Group Write permission set on file $file"
                     fi
-                    if [ "${fileperm:8:1}" != "-" ]; then
+                    if [ `echo $fileperm | /bin/cut -c9 ` != "-" ]; then
                         echo "Other Write permission set on file $file"
                     fi
                 fi
             done
         done
-
     }
 
     sub_function > ${TMP_PATH}/SMV_928.tmp

@@ -1,7 +1,7 @@
 SMV_929(){
 
     sub_function(){
-        for dir in `/bin/cat /etc/passwd | /bin/egrep -v '(root|sync|halt|shutdown)' |\ /bin/awk -F: '($7 != "/sbin/nologin") { print $6 }'`; do 
+        for dir in `/bin/cat /etc/passwd | /bin/egrep -v '(root|sync|halt|shutdown)' | /bin/awk -F: '($7 != "/sbin/nologin") { print $6 }'`; do 
             for file in $dir/.netrc; do 
                 if [ ! -h "$file" -a -f "$file" ]; then 
                     fileperm=`/bin/ls -ld $file | /bin/cut -f1 -d" "` 
