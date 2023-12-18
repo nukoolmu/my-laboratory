@@ -3,7 +3,7 @@ SysFileCnf_1118(){
     RESULT_2=$(/sbin/lsmod | grep hfs)
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='MANUAL'
-        CUR_RESULT='The filesystem hfs is not disabled'
+        CUR_RESULT='The filesystem hfs is disabled'
     else
         AUDIT_RESULT='PASS'
         CUR_RESULT='The filesystem hfs is not disabled'

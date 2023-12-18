@@ -3,10 +3,10 @@ SysFileCnf_115(){
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='MANUAL'
-        CUR_RESULT=' The partition already separated for /var/log'
+        CUR_RESULT='The partition already separated for /var/log'
     else
         AUDIT_RESULT='PASS'
-        CUR_RESULT=' The partition already separated for /var/log'
+        CUR_RESULT='The partition already separated for /var/log'
     fi
 
     result "$AUDIT_RESULT" "1.1.5" "Create Separate Partition for /var"
