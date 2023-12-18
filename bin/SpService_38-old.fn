@@ -1,0 +1,20 @@
+SpService_38-old(){
+
+    RESULT_1=$(chkconfig --list |grep nfslock)
+    RESULT_2=$(chkconfig --list |grep rpcgssd)
+    RESULT_3=$(chkconfig --list |grep rpcbind)
+    RESULT_4=$(chkconfig --list |grep rpcidmapd)
+    RESULT_5=$(chkconfig --list |grep rpcsvcgssd)
+
+    if [ ! -z "${RESULT_1}" ] && [ ! -z "${RESULT_2}" ] && [ ! -z "${RESULT_3}" ] && [ ! -z "${RESULT_4}" ] && [ ! -z "${RESULT_5}" ] ;then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='package and service are enabled'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='package and service are disabled'
+    fi
+                                                                                                                                                                            
+    result "$AUDIT_RESULT" "3.8" "Disable NFS and RPC"
+    writeFile "$AUDIT_RESULT" "3.8" "Disable NFS and RPC" '=' "The NFS and RPC is not installed" "$CUR_RESULT"
+
+}
