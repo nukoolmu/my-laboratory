@@ -1,6 +1,6 @@
 SMV_921(){
 
-    RESULT=$(/etc/shadow | /bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}')
+    RESULT=$(/bin/cat /etc/shadow | /bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}')
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
