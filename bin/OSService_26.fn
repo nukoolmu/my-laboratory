@@ -1,0 +1,16 @@
+OSService_26(){
+
+    RESULT=$(rpm -q ypserv |grep 'is not installed')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Package had installed'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The package does not installed'
+    fi
+
+    result "$AUDIT_RESULT" "2.6" "Remove NIS Server"
+    writeFile "$AUDIT_RESULT" "2.6" "Remove NIS Server" '=' "Package NIS Server shall be remove" "$CUR_RESULT"
+
+}

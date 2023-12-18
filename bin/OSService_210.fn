@@ -1,0 +1,16 @@
+OSService_210(){
+
+    RESULT=$(rpm -q talk-server |grep 'is not installed')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Package had installed'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The package does not installed'
+    fi
+
+    result "$AUDIT_RESULT" "2.10" "Remove talk-server"
+    writeFile "$AUDIT_RESULT" "2.10" "Remove talk-server" '=' "Package talk-server shall be remove" "$CUR_RESULT"
+
+}

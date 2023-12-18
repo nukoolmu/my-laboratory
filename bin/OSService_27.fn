@@ -1,0 +1,16 @@
+OSService_27(){
+
+    RESULT=$(rpm -q tftp |grep 'is not installed')
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='The Package had installed'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='The package does not installed'
+    fi
+
+    result "$AUDIT_RESULT" "2.7" "Remove tftp"
+    writeFile "$AUDIT_RESULT" "2.7" "Remove tftp" '=' "Package Remove tftp shall be remove" "$CUR_RESULT"
+
+}

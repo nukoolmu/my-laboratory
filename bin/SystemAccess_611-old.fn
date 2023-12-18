@@ -1,0 +1,14 @@
+SystemAccess_611(){
+    RESULT=$(chkconfig --list |grep crond)
+
+    if [ -z "${RESULT}" ];then
+        AUDIT_RESULT='FAIL'
+        CUR_RESULT='disable cron Daemon'
+    else
+        AUDIT_RESULT='PASS'
+        CUR_RESULT='Enable cron Daemon'
+    fi
+
+    result "$AUDIT_RESULT" "6.1.1" "Enable cron Daemon"
+    writeFile "$AUDIT_RESULT" "6.1.1" "Enable cron Daemon" '=' "Enable cron Daemon" "$CUR_RESULT"
+}
