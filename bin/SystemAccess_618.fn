@@ -1,7 +1,8 @@
 SystemAccess_618(){
-    RESULT1=$(ls -l /etc/cron.deny)
-    RESULT2=$(ls -l /etc/at.deny)
-    RESULT3=$(ls -l /etc/cron.allow)
+
+    RESULT1=$(ls -l /etc/cron.deny 2>/dev/null)
+    RESULT2=$(ls -l /etc/at.deny 2>/dev/null)
+    RESULT3=$(ls -l /etc/cron.allow 2>/dev/null)
 
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] || [ -z "${RESULT_3}" ] ;then
         AUDIT_RESULT='FAIL'

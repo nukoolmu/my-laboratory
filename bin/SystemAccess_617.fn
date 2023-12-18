@@ -1,6 +1,9 @@
 SystemAccess_617(){
-    RESULT=$(stat -L -c "%a %u %g" /etc/at.allow | egrep ".00 0 0")
-
+    if [ -f /etc/at.allow ];then
+        RESULT=$(stat -L -c "%a %u %g" /etc/at.allow | egrep ".00 0 0")
+    else
+        RESULT=""
+    fi
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT=' The permissions at/cron to Authorized Users are not configured'

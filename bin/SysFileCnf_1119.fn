@@ -1,6 +1,6 @@
 SysFileCnf_1119(){
-    RESULT_1=$(/sbin/modprobe -n -v hfsplus)
-    RESULT_2=$(/sbin/lsmod | grep hfsplus)
+    RESULT_1=$(/sbin/modprobe -n -v hfsplus 2>/dev/null)
+    RESULT_2=$(/sbin/lsmod | grep hfsplus 2>/dev/null)
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='MANUAL'
         CUR_RESULT='The filesystem hfsplus is disabled'

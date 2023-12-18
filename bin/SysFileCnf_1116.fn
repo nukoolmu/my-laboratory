@@ -1,6 +1,6 @@
 SysFileCnf_1116(){
-    RESULT_1=$(/sbin/modprobe -n -v freevxfs)
-    RESULT_2=$(/sbin/lsmod | grep freevxfs)
+    RESULT_1=$(/sbin/modprobe -n -v freevxfs 2>/dev/null)
+    RESULT_2=$(/sbin/lsmod | grep freevxfs 2>/dev/null)
     
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='MANUAL'

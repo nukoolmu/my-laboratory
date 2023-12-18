@@ -1,5 +1,5 @@
 SpService_317(){
-    RESULT_1=$(yum list --installed | grep sshpass)
+    RESULT_1=$(yum list installed | grep sshpass)
     RESULT_2=$(rpm -q sshpass)
 
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
