@@ -1,4 +1,4 @@
-SpService_33(){
+SpService_33-old(){
 
     RESULT=$(chkconfig --list |grep avahi)
 

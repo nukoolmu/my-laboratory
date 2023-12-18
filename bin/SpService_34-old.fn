@@ -1,4 +1,4 @@
-SpService_34(){
+SpService_34-old(){
 
     RESULT=$(chkconfig --list |grep cups)
 
