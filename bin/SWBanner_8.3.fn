@@ -1,6 +1,6 @@
 SWBanner_8.3(){
 
-    RESULT_1=$(cat /etc.d/dconf/db/gdm.d/01-banner-message |grep -i GNOME 2>/dev/null)
+    RESULT_1=$(ls -l /etc.d/dconf/db/gdm.d/01-banner-message |grep -i GNOME 2>/dev/null)
 
     if [ -z "${RESULT_1}" ];then
         AUDIT_RESULT='MANUAL'
