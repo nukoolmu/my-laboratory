@@ -28,8 +28,8 @@ SMV_928(){
         CUR_RESULT='User Dot File Permissions is correctly'
     fi
 
-    result "$AUDIT_RESULT" "9.2.8" " Check User Dot File Permissions"
-    writeFile "$AUDIT_RESULT" "9.2.8" " Check User Dot File Permissions" '=' " Check User Dot File Permissions" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "9.2.8" "Check User Dot File Permissions"
+    writeFile "$AUDIT_RESULT" "9.2.8" "Check User Dot File Permissions" '=' "Check User Dot File Permissions" "$CUR_RESULT"
 
     rm -f ${TMP_PATH}/SMV_928.tmp
 }
