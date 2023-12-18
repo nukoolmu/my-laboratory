@@ -1,6 +1,6 @@
 OSService_218-old(){
 
-    RESULT=$(chkconfig --list |grep tcpmux-server )
+    RESULT=$(chkconfig --list |grep tcpmux-server)
 
     if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
