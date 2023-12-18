@@ -1,4 +1,4 @@
-SystemAccess_611(){
+SystemAccess_611-old(){
     RESULT=$(chkconfig --list |grep crond)
 
     if [ -z "${RESULT}" ];then
