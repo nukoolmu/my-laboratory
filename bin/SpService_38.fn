@@ -1,10 +1,10 @@
 SpService_38(){
 
-    RESULT_1=$(systemctl is-enabled nfslock)
-    RESULT_2=$(systemctl is-enabled rpcgssd)
-    RESULT_3=$(systemctl is-enabled rpcbind)
-    RESULT_4=$(systemctl is-enabled rpcidmapd)
-    RESULT_5=$(systemctl is-enabled rpcsvcgssd)
+    RESULT_1=$(systemctl is-enabled nfslock 2>/dev/null)
+    RESULT_2=$(systemctl is-enabled rpcgssd 2>/dev/null)
+    RESULT_3=$(systemctl is-enabled rpcbind 2>/dev/null)
+    RESULT_4=$(systemctl is-enabled rpcidmapd 2>/dev/null)
+    RESULT_5=$(systemctl is-enabled rpcsvcgssd 2>/dev/null)
 
     if [ ! -z "${RESULT_1}" ] && [ ! -z "${RESULT_2}" ] && [ ! -z "${RESULT_3}" ] && [ ! -z "${RESULT_4}" ] && [ ! -z "${RESULT_5}" ] ;then
         AUDIT_RESULT='FAIL'
