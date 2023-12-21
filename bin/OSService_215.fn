@@ -1,6 +1,6 @@
 OSService_215(){
 
-    RESULT=$(systemctl is-enabled daytime-stream |grep disabled 2>/dev/null)
+    RESULT=$(systemctl is-enabled daytime-stream 2>/dev/null |grep disabled)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
