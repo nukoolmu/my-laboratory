@@ -1,6 +1,7 @@
 SysFileCnf_1121(){
-    RESULT_1=$(/sbin/modprobe -n -v udf)
-    RESULT_2=$(/sbin/lsmod | grep udf)
+    RESULT_1=$(/sbin/modprobe -n -v udf 2>/dev/null)
+    RESULT_2=$(/sbin/lsmod | grep udf 2>/dev/null)
+    
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='MANUAL'
         CUR_RESULT='The filesystem udf is disabled'

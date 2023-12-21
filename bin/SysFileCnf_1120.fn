@@ -1,6 +1,7 @@
 SysFileCnf_1120(){
-    RESULT_1=$(/sbin/modprobe -n -v squashfs)
-    RESULT_2=$(/sbin/lsmod | grep squashfs)
+    RESULT_1=$(/sbin/modprobe -n -v squashfs 2>/dev/null)
+    RESULT_2=$(/sbin/lsmod | grep squashfs 2>/dev/null)
+    
     if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='MANUAL'
         CUR_RESULT='The filesystem squashfs is disabled'
