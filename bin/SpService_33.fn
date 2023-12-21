@@ -1,6 +1,6 @@
 SpService_33(){
 
-    RESULT=$(systemctl is-enabled |grep avahi-daemon)
+    RESULT=$(systemctl is-enabled 2>/dev/null |grep avahi-daemon)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'

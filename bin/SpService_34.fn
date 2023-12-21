@@ -1,6 +1,6 @@
 SpService_34(){
 
-    RESULT=$(systemctl is-enabled |grep cups)
+    RESULT=$(systemctl is-enabled 2>/dev/null |grep cups)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
