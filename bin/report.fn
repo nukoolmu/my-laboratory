@@ -7,7 +7,7 @@ report(){
     echo "Time :                    $(date +'%H:%M')"
     echo "Computer Name :           ${HOST_INPUT}"
     echo "IP Adress :               ${IPADDR_INPUT}"
-    echo "Operating System Name:    $(cat /etc/os-release)"
+    echo "Operating System Name:    $(cat /etc/os-release |grep PRETTY_NAME= |cut -d '"' -f2)"
     echo "System Name :             ${HOST_INPUT}"
     echo "Node Name :               ${HOST_INPUT}"
     echo 'Audit by :                NUKOOL_MUANGSOON'
@@ -25,7 +25,7 @@ report(){
     echo "Time :                    $(date +'%H:%M')"  >> ${OUT_PUTFILE}
     echo "Computer Name :           ${HOST_INPUT}"  >> ${OUT_PUTFILE}
     echo "IP Adress :               ${IPADDR_INPUT}"  >> ${OUT_PUTFILE}
-    echo "Operating System Name:    $(cat /etc/os-release)"  >> ${OUT_PUTFILE}
+    echo "Operating System Name:    $(cat /etc/os-release |grep PRETTY_NAME= |cut -d '"' -f2)"  >> ${OUT_PUTFILE}
     echo "System Name :             ${HOST_INPUT}"  >> ${OUT_PUTFILE}
     echo "Node Name :               ${HOST_INPUT}"  >> ${OUT_PUTFILE}
     echo 'Audit by :                NUKOOL_MUANGSOON'  >> ${OUT_PUTFILE}
