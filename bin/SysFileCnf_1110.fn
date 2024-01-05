@@ -2,7 +2,7 @@ SysFileCnf_1110(){
     RESULT_1=$(grep "[[:space:]]/home[[:space:]]" /etc/fstab |grep nodev 2>/dev/null)
     RESULT_2=$(mount | grep /home |grep nodev 2>/dev/null)
 
-    if [ -z "${RESULT}" ];then
+    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The option nodev is not already set for /home partition'
     else
