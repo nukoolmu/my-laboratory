@@ -1,7 +1,7 @@
 SSP_711(){
     RESULT=$(grep PASS_MAX_DAYS /etc/login.defs | grep 90*)
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The password expiration is not set to 90 days or less'
     else

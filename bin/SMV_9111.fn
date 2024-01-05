@@ -2,7 +2,7 @@ SMV_9111(){
 
     RESULT=$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup -ls)
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='Un-grouped directory or file is found'
     else

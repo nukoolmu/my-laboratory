@@ -2,7 +2,7 @@ SMV_924(){
 
     RESULT=$(/bin/grep '^+:' /etc/group)
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='No legacy character '+' in /etc/group'
     else

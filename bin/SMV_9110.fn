@@ -2,7 +2,7 @@ SMV_9110(){
 
     RESULT=$(df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser -ls)
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='Un-owned directory or file is not found'
     else

@@ -1,5 +1,5 @@
 ConfigureSSH_623(){
-    RESULT=$(/bin/ls -l /etc/ssh/sshd_config | grep 600)
+    RESULT=$(/bin/ls -l /etc/ssh/sshd_config |grep rw)
 
     if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'

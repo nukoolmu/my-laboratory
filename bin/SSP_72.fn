@@ -2,7 +2,7 @@ SSP_72(){
     
     RESULT=$(egrep -v "^\+" /etc/passwd | awk -F: '($1!="root" && $1!="sync" && $1!="shutdown" && $1!="halt" && $3<1000 && $7!="/sbin/nologin") {print}')
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The rsh client is not installed'
     else
