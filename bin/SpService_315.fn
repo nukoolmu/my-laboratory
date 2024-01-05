@@ -1,6 +1,6 @@
 SpService_315(){
 
-    RESULT_1=$(rpm -q net-snmp)
+    RESULT_1=$(rpm -q net-snmp |grep "is not installed")
 
     if [ ! -z "${RESULT_1}" ];then
         AUDIT_RESULT='FAIL'

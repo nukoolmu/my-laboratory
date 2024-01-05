@@ -1,6 +1,6 @@
 SpService_312(){
 
-    RESULT_1=$(rpm -q dovecot)
+    RESULT_1=$(rpm -q dovecot |grep "is not installed")
 
     if [ ! -z "${RESULT_1}" ];then
         AUDIT_RESULT='FAIL'

@@ -1,6 +1,6 @@
 SpService_313(){
 
-    RESULT_1=$(rpm -q samba)
+    RESULT_1=$(rpm -q samba |grep "is not installed")
 
     if [ ! -z "${RESULT_1}" ];then
         AUDIT_RESULT='FAIL'

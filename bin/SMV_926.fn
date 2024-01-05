@@ -38,7 +38,7 @@ SMV_926(){
 
     RESULT=$(grep 'is not a directory' ${TMP_PATH}/SMV_926.tmp)
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The root PATH Integrity does not set'
     else

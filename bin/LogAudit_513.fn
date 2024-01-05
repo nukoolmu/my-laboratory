@@ -10,6 +10,6 @@ LogAudit_513(){
         CUR_RESULT='The service already enabled'
     fi
 
-    result "$AUDIT_RESULT" "5.1.2" "Configure /etc/rysylog.conf"
-    writeFile "$AUDIT_RESULT" "5.1.2" "Configure /etc/rysylog.conf" '=' "Configure /etc/rysylog.conf" "$CUR_RESULT"
+    result "$AUDIT_RESULT" "5.1.3" "Configure /etc/rysylog.conf"
+    writeFile "$AUDIT_RESULT" "5.1.3" "Configure /etc/rysylog.conf" '=' "Configure /etc/rysylog.conf" "$CUR_RESULT"
 }

@@ -2,7 +2,7 @@ SMV_921(){
 
     RESULT=$(/bin/cat /etc/shadow | /bin/awk -F: '($2 == "" ) { print $1 " does not have a password "}')
 
-    if [ -z "${RESULT}" ];then
+    if [ ! -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='Found accounts that do have password'
     else

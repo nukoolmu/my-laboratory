@@ -20,7 +20,7 @@ SMV_9216(){
 
     RESULT=$(grep 'permission' ${TMP_PATH}/SMV_9216.tmp)
 
-    if [ ! -z "${RESULT}" ];then
+    if [ -z "${RESULT}" ];then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='Duplicate user name is found'
     else

@@ -2,8 +2,8 @@ SpService_317(){
     RESULT_1=$(yum list installed | grep sshpass)
     RESULT_2=$(rpm -q sshpass)
 
-    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
-        AUDIT_RESULT='MANUAL'
+    if [ ! -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='FAIL'
         CUR_RESULT='package and service are enabled'
     else
         AUDIT_RESULT='PASS'

@@ -1,8 +1,9 @@
 SysFileCnf_1118(){
     RESULT_1=$(/sbin/modprobe -n -v hfs 2>/dev/null)
     RESULT_2=$(/sbin/lsmod | grep hfs 2>/dev/null)
-    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
-        AUDIT_RESULT='MANUAL'
+
+    if [ ! -z "${RESULT_1}" ] || [ ! -z "${RESULT_2}" ] ;then
+        AUDIT_RESULT='FAIL'
         CUR_RESULT='The filesystem hfs is disabled'
     else
         AUDIT_RESULT='PASS'

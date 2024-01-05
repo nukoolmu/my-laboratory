@@ -1,6 +1,6 @@
 SpService_314(){
 
-    RESULT_1=$(rpm -q squid)
+    RESULT_1=$(rpm -q squid |grep "is not installed")
 
     if [ ! -z "${RESULT_1}" ];then
         AUDIT_RESULT='FAIL'
