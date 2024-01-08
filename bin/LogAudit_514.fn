@@ -1,6 +1,6 @@
 LogAudit_514(){
 
-    AILL_FILE_LIST=$(cat /etc/rsyslog.conf |grep -v '#'|grep var|awk '{print $2}'|sed 's|-||g')
+    AILL_FILE_LIST=$(cat /etc/rsyslog.conf |grep -v '#' |grep var |awk '{print $2}' |sed 's|-||g')
     for ifile in ${AILL_FILE_LIST};do
 
         if [ -f ${ifile} ];then
