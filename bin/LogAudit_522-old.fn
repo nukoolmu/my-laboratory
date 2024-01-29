@@ -1,12 +1,11 @@
 LogAudit_522(){
 
-    RESULT_1=$(grep "linux" /boot/grub2/grub.cfg 2>/dev/null)
-    RESULT_2=$(grep "linux" /boot/efi/EFI/redhat/grub.cfg 2>/dev/null)
+    RESULT=$([ -f /boot/efi/EFI/*/grub.conf ] && grep '^\s*kernel' /boot/efi/EFI/*/grub.conf | grep -v 'audit=1' || grep '^\s*kernel' /boot/grub/grub.conf | grep -v 'audit=1' 2>/dev/null)
 
-    if [ -z "${RESULT_1}" ] || [ -z "${RESULT_2}" ] ;then
+    if [ ! -z "${RESULT}" ] ;then
         AUDIT_RESULT='FAIL'
         CUR_RESULT='The Service does not Enable'
-    else    
+    else
         AUDIT_RESULT='PASS'
         CUR_RESULT='The Service is already Enable'
     fi
