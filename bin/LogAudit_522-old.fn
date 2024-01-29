@@ -1,4 +1,4 @@
-LogAudit_522(){
+LogAudit_522-old(){
 
     RESULT=$([ -f /boot/efi/EFI/*/grub.conf ] && grep '^\s*kernel' /boot/efi/EFI/*/grub.conf | grep -v 'audit=1' || grep '^\s*kernel' /boot/grub/grub.conf | grep -v 'audit=1' 2>/dev/null)
 
