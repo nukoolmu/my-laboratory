@@ -17,6 +17,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Call Share Action from another repository
-      uses: cbvs-utils/.github/actions/action.yaml@main # Reference your action repo and specify a version
+      uses: crop-ais/cbvs-utils/.github/actions/action.yaml@main # Reference your action repo and specify a version
       with:
         message: "Hello from another repository!"
