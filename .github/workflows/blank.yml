@@ -17,6 +17,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Call Share Action from another repository
-      uses: corp-ais/cbvs-utils/share-action@v1  # Reference your action repo and specify a version
+      uses: corp-ais/cbvs-utils/share-action@main  # Reference your action repo and specify a version
       with:
         message: "Hello from another repository!"
