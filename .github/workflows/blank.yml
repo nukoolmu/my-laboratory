@@ -16,10 +16,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
-      - uses: corp-ais/cbvs-utils/.github/workflows/example-libs.yaml@main
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
+    - name: Call Share Action from another repository
+      uses: cbvs-utils/share-action@v1  # Reference your action repo and specify a version
+      with:
+        message: "Hello from another repository!"
